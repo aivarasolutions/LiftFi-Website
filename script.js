@@ -96,13 +96,14 @@ document.querySelector('.contact-form').addEventListener('submit', function(e) {
     this.reset();
 });
 
+// NOTE: Compliance edit: replaced lending/guarantee language on 2025-10-28
 // CTA Button Actions
 document.querySelectorAll('.cta-primary, .plan-button, .nav-link.cta-button').forEach(button => {
     button.addEventListener('click', function(e) {
-        if (this.textContent.includes('Get Started') || this.textContent.includes('Start Building')) {
+        if (this.textContent.includes('Get Started') || this.textContent.includes('Start')) {
             e.preventDefault();
             // Simulate sign-up process
-            alert('Welcome to LiftFi! Our team will contact you shortly to get started with your credit building journey.');
+            alert('Welcome to LiftFi! Our team will contact you shortly to get started with your credit wellness education journey.');
         }
     });
 });

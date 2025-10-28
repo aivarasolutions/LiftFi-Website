@@ -1,0 +1,191 @@
+You are editing a static website (HTML/CSS/JS) for Lift Financial Holdings, LLC (LiftFi) hosted at liftfi.io. The goal is to reduce banking/payment-processor risk by clarifying that LiftFi is not a lender, does not extend credit, and does not guarantee score increases. Keep branding; rewrite only risky or ambiguous wording.
+
+Global rules
+
+Never imply lending, credit issuance, or guarantees.
+
+Replace phrases like “Credit Service Subscription”, “we finance”, “we get you funded”, “boost your credit” with compliant alternatives.
+
+Add clear Not a Lender disclaimers site-wide.
+
+Keep tone professional, educational, and transparent.
+
+Do not remove truthful testimonials; add variability disclaimers near them.
+
+File targets (assume common static structure)
+
+index.html (Home / Hero / Pricing teasers)
+
+services.html (Services detail)
+
+about.html (About / Mission)
+
+pricing.html (Plans / Memberships)
+
+faq.html (if present; otherwise add an FAQ section to services.html)
+
+partials/footer.html or site footer in each page
+
+All pages’ <head> blocks for SEO
+
+If file names differ, locate the closest equivalents and apply the same edits.
+
+Specific edits
+1) Head metadata (all pages)
+
+Title → LiftFi – Credit Wellness & Financial Education
+
+Meta description →
+LiftFi provides credit-wellness education, monitoring, and optional payment-reporting tools. We are not a lender and do not offer loans or guarantees.
+
+Add canonical if missing:
+
+<link rel="canonical" href="https://www.liftfi.io/">
+
+2) Home hero (index.html)
+
+Find (examples to match; use partials/variants if text differs):
+
+Credit Service Subscription
+
+Phrases implying lending: we finance, get you funded, loan, borrowers
+
+Replace with:
+
+<h1>Credit Wellness & Financial Education</h1>
+<p>We help individuals and businesses build healthier financial profiles through education, monitoring, and transparent payment-reporting tools — not lending.</p>
+<p class="disclaimer">LiftFi is not a lender or credit-granting institution. We do not offer loans or financing.</p>
+
+3) Pricing / Membership language (pricing.html or pricing section in index.html)
+
+Find risky copy (examples):
+
+Credit Service Subscription reporting with a membership of ($100–$1,000) paid over 6–12 months, with all payments reported to boost your credit.
+
+boost your credit / guarantee / score increase
+
+Replace with:
+
+<h2>Memberships</h2>
+<p>Our Credit Wellness Memberships (typically $100–$1,000, payable over 6–12 months) include access to education, credit monitoring, and optional payment-reporting features to help members build consistent positive payment histories.</p>
+<p class="fineprint">Results vary. LiftFi does not guarantee credit score increases. Payment-reporting is provided only where authorized and in accordance with bureau policies.</p>
+
+
+Make sure plan cards avoid “loan”, “finance”, “guarantee”. Use “education”, “monitoring”, “reporting tools”, “coaching”.
+
+4) Services page (services.html)
+
+Replace funding/lending implications:
+
+Find: We help you get funded, We finance projects, We provide credit, loan application support
+
+Replace with:
+
+<h2>What We Do</h2>
+<ul>
+  <li>Credit-wellness education and resources</li>
+  <li>Credit monitoring and analytics tools</li>
+  <li>Optional payment-reporting features where permitted</li>
+  <li>Business documentation readiness and strategy (non-lending)</li>
+</ul>
+
+<p class="clarifier">LiftFi provides consulting, education, and reporting tools. We do not underwrite, broker, or issue loans, and we do not collect loan repayments.</p>
+
+
+If there’s a “Funding” section, rename to “Funding Readiness & Documentation” and describe preparation (planning, documentation, partner introductions) without implying you provide funds.
+
+5) About page (about.html)
+
+Add the following paragraph near the top or “Our Model”:
+
+<p><strong>Important:</strong> Lift Financial Holdings, LLC (“LiftFi”) is a financial education and reporting technology company. We are not a bank, lender, broker, or credit repair organization as defined by state or federal law. We do not extend credit, offer loans, or provide financing of any kind.</p>
+
+
+Replace occurrences of “credit service” with “credit wellness” or “credit-monitoring and education”.
+
+6) Testimonials (wherever rendered)
+
+Keep testimonials; add a small disclaimer directly below the section:
+
+<p class="fineprint">Testimonials reflect individual experiences. Credit improvement results vary and are not guaranteed.</p>
+
+7) FAQ (create or update; faq.html or within services.html)
+
+Add an FAQ block if missing:
+
+<section id="faq">
+  <h2>FAQ</h2>
+
+  <h3>Are you a lender?</h3>
+  <p>No. LiftFi does not offer loans, extend credit, or act as a lending partner.</p>
+
+  <h3>Do you guarantee credit score increases?</h3>
+  <p>No. Results vary based on individual credit profiles and behavior. We do not guarantee outcomes.</p>
+
+  <h3>What do memberships include?</h3>
+  <p>Education resources, credit-monitoring tools, and optional payment-reporting features where available and permitted.</p>
+
+  <h3>Do you handle loan payments or deposits?</h3>
+  <p>No. We never take deposits or process loan repayments. Our services are educational and administrative only.</p>
+</section>
+
+8) Global footer disclaimer (partials/footer.html or each page footer)
+
+Add this to the footer on every page:
+
+<p class="compliance">Lift Financial Holdings, LLC (LiftFi) provides credit-education, credit-monitoring, and optional payment-reporting features. We are not a bank, lender, broker, or credit repair organization. All services are for educational and informational purposes only.</p>
+
+9) CSS touch-ups (styles.css or equivalent)
+
+Add small styles for disclaimers so they’re visible but unobtrusive:
+
+.disclaimer, .fineprint, .compliance {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+.compliance {
+  margin-top: 1rem;
+  border-top: 1px solid #eee;
+  padding-top: 0.75rem;
+}
+
+10) JavaScript (if any marketing copy is injected)
+
+Search *.js for strings like loan, finance, boost, guarantee. Replace these with compliant terms:
+
+loan/finance → education, monitoring, reporting tools, readiness
+
+boost your credit → build positive payment history
+
+guarantee → remove or swap to no guarantees; results vary
+
+Safe find/replace patterns (apply broadly)
+
+Credit Service Subscription → Credit Wellness Subscription
+
+boost your credit → build positive payment history
+
+we finance|we provide loans|loan(s)?|borrowers → we do not offer loans (or remove)
+
+get you funded|we fund → funding readiness and documentation (non-lending)
+
+guarantee(d)? → remove or replace with results vary
+
+credit repair (if present) → credit-wellness education (and ensure About/Footers disclaim “not a credit repair organization”)
+
+Use case-insensitive replacements and avoid altering unrelated words (e.g., comments or library code).
+
+Deliverable
+
+Updated HTML files with the above copy changes inserted.
+
+Updated CSS with disclaimer styles.
+
+Any JS string changes documented in comments at the top of edited files:
+
+// NOTE: Compliance edit: replaced lending/guarantee language on 2025-10-28
+
+
+Do not modify logos, colors, or core layout. Keep all existing links and tracking. Return the full edited files.

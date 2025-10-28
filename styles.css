@@ -917,6 +917,34 @@ body {
     color: rgba(255, 255, 255, 0.6);
 }
 
+/* Compliance Disclaimers */
+.disclaimer, .fineprint, .compliance {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+}
+
+.disclaimer {
+    background: rgba(0, 165, 239, 0.1);
+    padding: 10px 15px;
+    border-left: 3px solid var(--sky-blue);
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.fineprint {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.compliance {
+    margin-top: 1rem;
+    border-top: 1px solid #eee;
+    padding-top: 0.75rem;
+    font-size: 0.85rem;
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
