@@ -97,13 +97,19 @@ document.querySelector('.contact-form').addEventListener('submit', function(e) {
 });
 
 // NOTE: Compliance edit: replaced lending/guarantee language on 2025-10-28
+// NOTE: Further compliance edit: removed all credit services language on 2025-10-28
 // CTA Button Actions
 document.querySelectorAll('.cta-primary, .plan-button, .nav-link.cta-button').forEach(button => {
     button.addEventListener('click', function(e) {
-        if (this.textContent.includes('Get Started') || this.textContent.includes('Start')) {
+        if (this.textContent.includes('Contact') || this.textContent.includes('Learn') || this.textContent.includes('Get Started')) {
             e.preventDefault();
-            // Simulate sign-up process
-            alert('Welcome to LiftFi! Our team will contact you shortly to get started with your credit wellness education journey.');
+            // Direct to contact section
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Thank you for your interest! Please contact us at Admin@LiftFi.io or call 1-281-310-1114 to discuss our consulting services.');
+            }
         }
     });
 });
