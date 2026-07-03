@@ -1,0 +1,217 @@
+We are finalizing the official Lift Fi brand identity on www.liftfi.io.
+
+I have attached the official Lift Fi brand package files, logo assets, SVG, transparent PNGs, favicon/app icon mockup, business card mockup, letterhead mockup, and investor deck mockup.
+
+Your task:
+Apply this official Lift Fi branding across the entire website and make the website feel like a premium, investor-ready financial holding company.
+
+Brand:
+Lift Fi
+Legal name: Lift Financial Holdings LLC
+
+Brand positioning:
+Lift Fi is a modern financial holding company focused on building, acquiring, organizing, and scaling cash-flowing businesses across real estate, logistics, technology, media, travel, and financial systems.
+
+Core brand feeling:
+Premium, investor-ready, sophisticated, institutional, secure, structured, modern, long-term wealth focused.
+
+Official visual identity:
+The final logo is the Crest + Holding Architecture identity:
+- Metallic gold shield
+- Gold canopy beam
+- Three white pillars
+- Premium modern serif “Lift Fi” wordmark
+- Champagne gold “LIFT FINANCIAL HOLDINGS LLC” subtitle
+
+Use the attached brand guide as the source of truth:
+- Lift_Fi_Official_Brand_Package.md
+- Lift_Fi_Official_Brand_Package.pdf
+
+Official colors:
+- Matte Black: #0A0A0A — primary background
+- Deep Charcoal: #2B2B2B — secondary background and dark text on light sections
+- White: #FFFFFF — pillars and wordmark on dark backgrounds
+- Metallic Gold: #C9A24B — shield outline, canopy beam, premium accents
+- Soft Champagne Gold: #D6B87A — subtitle, dividers, subtle accents
+
+Typography guidance:
+- Use a premium modern serif for high-impact headings and the “Lift Fi” brand feeling. Recommended style: Playfair Display, Didot, Cormorant Garamond, or similar.
+- Use a clean geometric sans-serif for body text, labels, nav, buttons, and subtitles. Recommended style: Montserrat, Inter, Helvetica Neue, or similar.
+- Use wide letter spacing for small uppercase labels and subtitles.
+- The site should feel like a private equity / holding company / family office brand, not a generic startup.
+
+Asset usage:
+Use the attached assets as follows:
+
+1. Main website header / navbar:
+Use `liftfi_horizontal_transparent.png` or `liftfi_horizontal_black.png` depending on the background.
+The navbar should feel clean, premium, and investor-facing.
+
+2. Hero section:
+Use `liftfi_stacked_transparent.png` or `liftfi_stacked_black.png` as the main hero logo if appropriate.
+The hero should feel like the investor deck cover mockup: black background, restrained gold accents, premium spacing, strong headline.
+
+3. Dark sections:
+Use black or deep charcoal backgrounds with white text and gold/champagne accents.
+Use `liftfi_stacked_black.png`, `liftfi_icon_black.png`, or transparent assets depending on layout.
+
+4. Light sections:
+Use white or very light backgrounds with deep charcoal text.
+Use `liftfi_stacked_white.png`, `liftfi_icon_white.png`, or `liftfi_onecolor_black_on_white.png`.
+
+5. Favicon:
+Use the icon-only crest.
+Create proper favicon files from `liftfi_icon_transparent.png` or `liftfi_icon_black.png`.
+Add:
+- /favicon.ico
+- /favicon-16x16.png
+- /favicon-32x32.png
+- /apple-touch-icon.png
+- /android-chrome-192x192.png
+- /android-chrome-512x512.png
+- web app manifest icons if the project uses a manifest
+
+6. Browser/app icon:
+Use the icon-only crest from `liftfi_icon_transparent.png`.
+Make sure it is centered, readable, and works at small sizes.
+
+7. Open Graph / social share image:
+Create or use a social sharing preview image using the official brand style.
+Use the investor deck cover style if possible.
+The OG image should include:
+- Lift Fi logo
+- “Lift Financial Holdings LLC”
+- A premium black background
+- Gold/champagne accents
+- Optional positioning line: “Structure. Discipline. Long-Term Ownership.”
+
+Add/update:
+- og:title
+- og:description
+- og:image
+- og:url
+- og:type
+- twitter:card
+- twitter:title
+- twitter:description
+- twitter:image
+
+Recommended SEO metadata:
+Title:
+Lift Fi | Lift Financial Holdings LLC
+
+Meta description:
+Lift Fi is a modern financial holding company focused on building, acquiring, and scaling cash-flowing businesses through structure, discipline, and long-term ownership.
+
+OG title:
+Lift Fi — Lift Financial Holdings LLC
+
+OG description:
+A modern financial holding company built around structure, discipline, and long-term ownership.
+
+Twitter card:
+summary_large_image
+
+8. Website theme:
+Update the full website styling to match the official brand:
+- Matte black primary background
+- Deep charcoal panels
+- White main text
+- Champagne/gold accents
+- Premium serif headings
+- Clean sans-serif body text
+- Subtle gold dividers
+- No loud colors
+- No cheap gradients
+- No generic stock-style visuals
+- No heavy glow, bevel, or cheesy 3D effects
+- Keep everything clean, restrained, and institutional
+
+9. Buttons:
+Primary CTA:
+Black or deep charcoal background with metallic gold border/text, or metallic gold background with black text where needed.
+Button copy should feel investor-ready:
+- Explore Our Structure
+- View Holdings
+- Investor Overview
+- Contact Lift Fi
+
+10. Sections to review and restyle:
+Apply the official brand system to every page/section:
+- Homepage
+- Hero
+- About / company overview
+- Holding company structure
+- Portfolio / business units
+- Strategic focus
+- Roadmap
+- Investor / partner CTA
+- Contact section
+- Footer
+- Any legal/compliance language
+- Any internal portal links or investor portal references
+
+11. Footer:
+Use the icon or horizontal logo.
+Footer should include:
+Lift Financial Holdings LLC
+Premium compliance-style language.
+Keep it clean and serious.
+Make sure the footer matches the brand colors and typography.
+
+12. Accessibility and readability:
+- Make sure color contrast is strong.
+- Do not use low-contrast gray text on black.
+- Make subtitles readable on mobile.
+- Make the logo crisp and not blurry.
+- Ensure the site looks good on desktop, tablet, and mobile.
+
+13. File organization:
+Place all brand assets in a clean folder, for example:
+`/public/brand/liftfi/`
+
+Use clear filenames and update all references.
+
+14. Technical cleanup:
+- Remove old logo references.
+- Remove unused placeholder branding.
+- Replace any temporary or Manus placeholder images with the official assets.
+- Make sure no broken image paths remain.
+- Update the site manifest if present.
+- Update favicon references in the app/root layout/head.
+- Update SEO metadata in the correct framework location.
+- Update any existing hardcoded colors to use the new brand variables/tokens.
+- Create reusable brand CSS variables or Tailwind theme values if applicable.
+
+Suggested CSS/theme variables:
+--liftfi-black: #0A0A0A;
+--liftfi-charcoal: #2B2B2B;
+--liftfi-white: #FFFFFF;
+--liftfi-gold: #C9A24B;
+--liftfi-champagne: #D6B87A;
+
+15. Important brand usage rules:
+- Do not stretch or distort the logo.
+- Maintain clear space around the logo.
+- Do not apply new shadows, bevels, glows, or gradients to the official logo files.
+- Use the SVG as the scalable master where appropriate.
+- Use PNGs for raster/web contexts.
+- Use icon-only crest for favicon/app/social avatar.
+- Use horizontal lockup for navigation/header.
+- Use stacked logo for hero, investor deck style sections, and social previews.
+
+16. Final QA:
+After implementation, check:
+- Homepage loads correctly.
+- Favicon appears in browser tab.
+- Apple touch icon and app icons are generated/referenced.
+- OG/social preview image is set.
+- Metadata is correct.
+- Logo is crisp on desktop and mobile.
+- No old logos remain.
+- No broken assets.
+- Colors match the official guide.
+- Mobile layout looks premium.
+- Header, footer, and CTA sections are fully branded.
+
+Please implement this directly in the current project. Do not create a new brand direction. Use the attached official Lift Fi brand package exactly as the source of truth.

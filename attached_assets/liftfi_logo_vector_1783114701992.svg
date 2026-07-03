@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  
+  <defs>
+    
+  </defs>
+
+  
+  <rect width="1000" height="1000" fill="#0A0A0A"/>
+
+  
+  <path d="M 350 130            L 650 130            L 650 420            C 650 500 590 555 500 595            C 410 555 350 500 350 420            Z" fill="none" stroke="#C9A24B" stroke-width="10"/>
+
+  
+  <rect x="405" y="205" width="190" height="34" fill="rgb(201, 162, 75)"/>
+
+  
+  <rect x="417" y="272" width="36" height="185" fill="rgb(255, 255, 255)"/>
+  <rect x="482" y="272" width="36" height="225" fill="rgb(255, 255, 255)"/>
+  <rect x="547" y="272" width="36" height="185" fill="rgb(255, 255, 255)"/>
+
+  
+  <text x="500" y="785" text-anchor="middle" font-size="150" font-weight="500" letter-spacing="4" fill="rgb(255, 255, 255)" font-family="&quot;Playfair Display&quot;, Didot, Georgia, serif">Lift Fi</text>
+
+  
+  <text x="500" y="865" text-anchor="middle" font-size="34" font-weight="600" letter-spacing="10" fill="rgb(214, 184, 122)" font-family="Montserrat, &quot;Helvetica Neue&quot;, Arial, sans-serif">LIFT FINANCIAL HOLDINGS LLC</text>
+</svg>

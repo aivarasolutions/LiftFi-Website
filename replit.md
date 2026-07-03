@@ -6,9 +6,11 @@ Lift Financial Holdings LLC is a static website positioning the company as the p
 ## Project Structure
 - `index.html` - Main landing page: hero, investment & operating thesis, who we are, leadership (Kevin Jackson), business architecture (hierarchical holding structure with tier-type tags), portfolio/ecosystem cards with status badges and linked titles, financial architecture, treasury & capital strategy, 4-phase alternating growth roadmap, strategic focus with deal criteria + data room CTA, vision, and contact sections
 - `capital-structuring.html` - Capital structuring and land development educational page (restyled to match brand)
-- `og-image.jpg` - 1200x630 social sharing image (matte black + gold LF mark); `logo.png` - LF mark PNG used as apple-touch-icon
+- `brand/liftfi/` - **Official Lift Fi brand package (source of truth)**: all logo PNGs (stacked/horizontal/icon in black/white/transparent/one-color), vector SVG master, mockups (favicon, business card, letterhead, deck cover), and Lift_Fi_Official_Brand_Package.md/.pdf brand guide. `*_web.png` files are alpha-trimmed versions for website display.
+- `og-image.jpg` - 1200x630 social image (deck-cover style: stacked logo + gold divider + "Structure. Discipline. Long-Term Ownership.")
+- Favicons generated from official crest: `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-192x192.png`, `android-chrome-512x512.png`, `site.webmanifest`
 - **command-center.html was DELETED in V2 (2026-07-03)** per user instruction — internal checklists must never be publicly reachable. Do not recreate it.
-- `styles.css` - Luxury matte black/charcoal/champagne-gold stylesheet (Playfair Display + Inter typography); text-based "LF" brand mark (no image logo)
+- `styles.css` - Luxury matte black/charcoal/gold stylesheet (Playfair Display + Inter typography) using official --liftfi-* color tokens; official logo image styles (.nav-logo-img / .hero-logo / .footer-logo-img)
 - `script.js` - Mobile nav, smooth scrolling, backend-ready contact form (data-endpoint config + mailto fallback), robust scroll fade-in animations (visible-by-default, js-enabled gating, prefers-reduced-motion support)
 
 ## Technology Stack
@@ -18,8 +20,9 @@ Lift Financial Holdings LLC is a static website positioning the company as the p
 - Static file hosting via Python HTTP server on port 5000
 
 ## Brand & Design
-- Luxury matte black (#0B0B0D), deep charcoal (#111116/#1A1A1F), white, champagne gold (#C8A96A), metallic gold (#E6C678) palette; soft gray text (#B8B8B8)
-- Text-based "LF" brand mark — NO blue/green chart logo (logo.png retired from all pages)
+- **Official Lift Fi brand identity (Crest + Holding Architecture)**: metallic gold shield, gold canopy beam, three white pillars, serif "Lift Fi" wordmark, champagne "LIFT FINANCIAL HOLDINGS LLC" subtitle
+- Official colors: Matte Black #0A0A0A, Deep Charcoal #2B2B2B, White #FFFFFF, Metallic Gold #C9A24B, Soft Champagne Gold #D6B87A (CSS tokens: --liftfi-black/charcoal/white/gold/champagne)
+- Logo usage: horizontal lockup in navbar/footer, stacked logo in hero, icon-only crest for favicons/app icons. Never stretch, add effects, or recreate the logo — use files from brand/liftfi/
 - Investor-ready, professional, strategic tone
 - Serif display headings (Playfair Display), clean sans body (Inter)
 - Mobile responsive with hamburger navigation
@@ -48,6 +51,7 @@ Footer disclaimer on every page states the above explicitly.
 - Backend-ready: `#contactForm` has a `data-endpoint` attribute (empty by default). Set it to a real endpoint (e.g. CONTACT_FORM_ENDPOINT value) to POST JSON inquiries. With no endpoint configured, the form validates input then opens a pre-filled mailto to Admin@LiftFi.io. Success/error/pending states render in `#formStatus`.
 
 ## Recent Changes
+- 2026-07-03: **Official brand rollout** — Saved full Lift Fi brand package to brand/liftfi/ (logos, SVG master, mockups, brand guide MD+PDF). Applied official identity site-wide: horizontal lockup in navbar+footer, stacked logo in hero, full favicon set from crest icon (ico/16/32/apple-touch/android 192+512 + site.webmanifest), new deck-cover-style og-image.jpg with tagline. Updated CSS tokens to official colors (#0A0A0A/#2B2B2B/#C9A24B/#D6B87A) with --liftfi-* variables; replaced all old gold hexes; removed text-based LF brand-mark and old logo.png/inline SVG favicon. New SEO title "Lift Fi | Lift Financial Holdings LLC" + OG/Twitter copy per brand spec. capital-structuring.html updated to new palette + favicons.
 - 2026-07-03: **V2 polish** — Deleted command-center.html entirely (with all cc-* CSS); added SEO/OG/Twitter meta + generated og-image.jpg (1200x630) and logo.png apple-touch-icon (Pillow-generated, matte black + gold LF); raised --text-muted to #A0A0A8 for WCAG contrast; new Investment & Operating Thesis section (4 cards); Strategic Focus rebuilt with 6 deal criteria + evaluation paragraph + compliance note + "Request Data Room Access" CTA (pre-selects Strategic Partner); portfolio titles linked (richaf.global, ipm.services; others "Site coming soon" placeholders) with LF watermark; org chart tier-type tags (Active LLCs / Brand Assets-DBAs / Operating Vertical / Target Structure); alternating desktop roadmap timeline; founder photo placeholder + focus tags + copy update (property operations). Contact form is Formspree-ready via data-endpoint (awaiting real form ID; honest mailto fallback until then).
 - 2026-07-03: **Investor-ready redesign (v2)** — Champagne/metallic gold palette, text-based LF brand mark, leadership section, hierarchical org chart with gold connecting lines, portfolio badges (Active LLC / Brand-DBA / In Development / Ownership Interest), rewritten 4-phase roadmap (no internal to-do language), strategic focus section, backend-ready contact form with validation and mailto fallback, robust visible-by-default scroll animations with prefers-reduced-motion support, Command Center removed from all public navigation/footer.
 - 2026-07-03: **Complete repositioning as parent holding company** — Rebuilt entire site with luxury black/white/gold design. Added hero, about (Kevin Jackson founder), ownership structure chart, portfolio company cards, financial architecture, treasury/reserve strategy, growth roadmap, investor readiness, vision, contact sections, and Command Center internal page. Restyled capital-structuring.html to match.
