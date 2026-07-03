@@ -90,6 +90,15 @@ section {
     color: var(--text-muted);
 }
 
+/* Honeypot field — hidden from real users, catches bots */
+.hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 /* Official Lift Fi logo images */
 .nav-logo-img {
     height: 44px;

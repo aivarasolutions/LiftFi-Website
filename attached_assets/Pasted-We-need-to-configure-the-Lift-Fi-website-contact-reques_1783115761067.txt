@@ -1,0 +1,218 @@
+We need to configure the Lift Fi website contact/request form email workflow using Resend.
+
+Important correction:
+The email address admin@liftfi.io is already active and working in Gmail. This is the official Lift Fi public/admin inbox. Replies should go to admin@liftfi.io, and Kevin should also receive the internal notifications at kevin@aivarasolutions.com.
+
+Brand:
+Lift Fi
+Legal name: Lift Financial Holdings LLC
+Website: www.liftfi.io
+Official email: admin@liftfi.io
+Additional admin notification email: kevin@aivarasolutions.com
+
+Goal:
+When someone fills out any Lift Fi contact/request/inquiry form:
+
+1. Send an internal notification email to:
+admin@liftfi.io
+kevin@aivarasolutions.com
+
+2. Send the person who submitted the form an automatic branded confirmation email from:
+Lift Fi <admin@liftfi.io>
+
+3. Replies from the customer confirmation email should go to:
+admin@liftfi.io
+
+4. Kevin should still receive/admin-monitor all form inquiries through:
+kevin@aivarasolutions.com
+
+Resend configuration:
+Use Resend for sending emails.
+Make sure the Resend API key is only used server-side.
+Do not expose the API key in frontend code.
+
+Environment variables to use/add:
+RESEND_API_KEY=the_resend_api_key
+LIFTFI_FROM_EMAIL=Lift Fi <admin@liftfi.io>
+LIFTFI_PUBLIC_EMAIL=admin@liftfi.io
+LIFTFI_ADMIN_EMAILS=admin@liftfi.io,kevin@aivarasolutions.com
+LIFTFI_REPLY_TO_EMAIL=admin@liftfi.io
+
+Important:
+The domain liftfi.io must be verified in Resend/DNS before sending from admin@liftfi.io. Gmail already has the inbox active, but Resend still requires proper DNS verification for sending.
+
+Email workflow:
+
+1. Internal admin notification email
+
+Send to:
+admin@liftfi.io
+kevin@aivarasolutions.com
+
+From:
+Lift Fi <admin@liftfi.io>
+
+Reply-To:
+The email address submitted by the user, so we can reply directly to the lead.
+
+Subject:
+New Lift Fi Inquiry — [Name or Company Name]
+
+Include all submitted form details:
+- Name
+- Email
+- Phone, if provided
+- Company, if provided
+- Inquiry type, if provided
+- Message
+- Source page or form location, if available
+- Timestamp
+- Any hidden fields or tracking fields currently collected
+- Any UTM fields if available
+
+The internal email should be clean, professional, and easy to scan.
+
+Suggested internal email format:
+
+New Lift Fi Inquiry
+
+Name:
+[Name]
+
+Email:
+[Email]
+
+Phone:
+[Phone]
+
+Company:
+[Company]
+
+Inquiry Type:
+[Inquiry Type]
+
+Message:
+[Message]
+
+Source:
+[Page/Form]
+
+Submitted:
+[Timestamp]
+
+2. Customer confirmation email
+
+Send to:
+The submitted user email address
+
+From:
+Lift Fi <admin@liftfi.io>
+
+Reply-To:
+admin@liftfi.io
+
+Subject:
+We Received Your Lift Fi Inquiry
+
+Use this copy:
+
+Hi [Name],
+
+Thank you for contacting Lift Fi.
+
+We received your inquiry and our team will review it shortly. Lift Fi is focused on building, acquiring, and scaling cash-flowing businesses through structure, discipline, and long-term ownership.
+
+If your message is related to partnerships, investment interest, acquisitions, or business opportunities, we’ll follow up with the appropriate next steps.
+
+Best,
+Lift Fi
+Lift Financial Holdings LLC
+
+Email branding requirements:
+The customer confirmation email must match the official Lift Fi brand guide and website style.
+
+Use:
+- Matte Black: #0A0A0A
+- Deep Charcoal: #2B2B2B
+- White: #FFFFFF
+- Metallic Gold: #C9A24B
+- Soft Champagne Gold: #D6B87A
+
+Use official logo assets from the attached brand package where appropriate:
+- Prefer liftfi_horizontal_transparent.png or liftfi_stacked_transparent.png for branded email header if images are supported.
+- If logo images are not reliable in email clients, use a clean text header with “Lift Fi” and a gold accent line.
+- Use a matte black header.
+- Use gold accent line/divider.
+- Use white or off-white content card.
+- Use deep charcoal text.
+- Keep the design premium, minimal, and investor-ready.
+- No emojis.
+- No casual language.
+- No bright colors outside the brand palette.
+- No heavy glow, bevel, or cheesy 3D styling.
+
+Recommended HTML email structure:
+- Header: matte black background, centered Lift Fi logo or text wordmark
+- Gold divider line using #C9A24B
+- Body: clean white/light card with deep charcoal text
+- CTA/contact line: “You can reply directly to this email or contact us at admin@liftfi.io”
+- Footer: Lift Financial Holdings LLC, admin@liftfi.io, www.liftfi.io
+- Footer background: matte black or deep charcoal with champagne/gold text
+
+3. Contact form UX
+
+After successful submission, show this success message:
+
+“Thank you. Your inquiry has been received. The Lift Fi team will review and follow up soon.”
+
+If the email fails, show:
+
+“Something went wrong while submitting your inquiry. Please try again or contact admin@liftfi.io.”
+
+4. Validation and security
+
+Validate required fields:
+- Name
+- Email
+- Message
+
+Validate email format.
+Sanitize all user inputs.
+Do not allow script injection in emails.
+Add basic spam protection if not already present:
+- Honeypot field
+- Rate limiting if possible
+- Server-side validation
+
+Never expose:
+- RESEND_API_KEY
+- Internal environment variables
+- Server logs with sensitive lead data
+
+5. Public contact email references
+
+Anywhere the website shows a public contact email, use:
+admin@liftfi.io
+
+Do not show Kevin’s email publicly unless already intentionally shown somewhere. Kevin’s email should be used for internal admin notifications only.
+
+6. Final QA checklist
+
+After implementation, test:
+
+- Contact form submits successfully
+- Internal notification goes to admin@liftfi.io
+- Internal notification also goes to kevin@aivarasolutions.com
+- Customer receives branded confirmation email
+- Customer confirmation comes from Lift Fi <admin@liftfi.io>
+- Customer confirmation Reply-To is admin@liftfi.io
+- Admin notification Reply-To is the user’s submitted email
+- Email styling matches the Lift Fi brand package
+- Logo displays correctly in email if used
+- Plain text fallback works if HTML email fails
+- No Resend API key appears in frontend code
+- No old sender emails remain
+- No broken form states on mobile or desktop
+
+Important:
+Do not redesign the website for this task. Only implement the Resend email/contact form workflow, branded email templates, success/error states, and public contact email references.

@@ -159,13 +159,15 @@ window.addEventListener('scroll', () => {
             return;
         }
 
+        const honeypot = getField('website');
         const payload = {
             name: getField('name').value.trim(),
             email: getField('email').value.trim(),
             phone: getField('phone').value.trim(),
             inquiryType: getField('inquiryType').value,
             message: getField('message').value.trim(),
-            source: 'liftfi.io contact form'
+            website: honeypot ? honeypot.value : '',
+            source: 'liftfi.io contact form (' + window.location.pathname + ')'
         };
 
         if (endpoint) {
@@ -180,11 +182,20 @@ window.addEventListener('scroll', () => {
                     },
                     body: JSON.stringify(payload)
                 });
-                if (!res.ok) throw new Error('Request failed with status ' + res.status);
-                setStatus('Thank you. Your inquiry has been received — the Lift Fi team will follow up with you directly.', 'success');
+                if (!res.ok) {
+                    let serverMessage = '';
+                    try {
+                        const data = await res.json();
+                        if (data && data.error) serverMessage = data.error;
+                    } catch (parseErr) { /* fall through to generic message */ }
+                    throw new Error(serverMessage || ('Request failed with status ' + res.status));
+                }
+                setStatus('Thank you. Your inquiry has been received. The Lift Fi team will review and follow up soon.', 'success');
                 form.reset();
             } catch (err) {
-                setStatus('Something went wrong submitting your inquiry. Please email us directly at Admin@LiftFi.io.', 'error');
+                setStatus(err.message && err.message.indexOf('Request failed') === -1 && err.message.indexOf('fetch') === -1
+                    ? err.message
+                    : 'Something went wrong while submitting your inquiry. Please try again or contact admin@liftfi.io.', 'error');
             } finally {
                 submitBtn.disabled = false;
             }
@@ -199,11 +210,11 @@ window.addEventListener('scroll', () => {
                 '',
                 payload.message
             ].filter(Boolean);
-            const mailto = 'mailto:Admin@LiftFi.io'
+            const mailto = 'mailto:admin@liftfi.io'
                 + '?subject=' + encodeURIComponent(subject)
                 + '&body=' + encodeURIComponent(bodyLines.join('\n'));
             window.location.href = mailto;
-            setStatus('Your email client has been opened with your inquiry pre-filled. If it did not open, please email Admin@LiftFi.io directly.', 'success');
+            setStatus('Your email client has been opened with your inquiry pre-filled. If it did not open, please email admin@liftfi.io directly.', 'success');
         }
     });
 })();

@@ -432,7 +432,7 @@
                     <div class="contact-item">
                         <div>
                             <h4>Email</h4>
-                            <p><a href="mailto:Admin@LiftFi.io">Admin@LiftFi.io</a></p>
+                            <p><a href="mailto:admin@liftfi.io">admin@liftfi.io</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -449,13 +449,17 @@
                     </div>
                 </div>
                 <!--
-                    Contact form endpoint configuration:
-                    Set data-endpoint below to the real Formspree endpoint
-                    (https://formspree.io/f/YOUR_FORM_ID) or any backend endpoint that accepts a
-                    JSON POST. When data-endpoint is empty, the form falls back to opening a
-                    pre-filled email to Admin@LiftFi.io — no fake endpoint, no fake success.
+                    Contact form endpoint: POSTs JSON to the site's own backend
+                    (/api/contact), which sends emails via Resend server-side.
+                    When data-endpoint is empty, the form falls back to opening a
+                    pre-filled email to admin@liftfi.io — no fake endpoint, no fake success.
                 -->
-                <form class="contact-form" id="contactForm" method="POST" data-endpoint="" novalidate>
+                <form class="contact-form" id="contactForm" method="POST" data-endpoint="/api/contact" novalidate>
+                    <!-- Honeypot: hidden from real users, catches bots -->
+                    <div class="hp-field" aria-hidden="true">
+                        <label for="cf-website">Website</label>
+                        <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
                     <div class="form-group">
                         <label for="cf-name" class="form-label">Full Name</label>
                         <input type="text" id="cf-name" name="name" placeholder="Your full name" required>
@@ -521,7 +525,7 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul>
-                        <li><a href="mailto:Admin@LiftFi.io">Admin@LiftFi.io</a></li>
+                        <li><a href="mailto:admin@liftfi.io">admin@liftfi.io</a></li>
                         <li><a href="tel:12813101114">1-281-310-1114</a></li>
                         <li>Houston, Texas</li>
                     </ul>
