@@ -2,23 +2,24 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
+    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }));
+}
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for same-page navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -27,149 +28,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Testimonials Slider
-let currentSlide = 0;
-const testimonials = document.querySelectorAll('.testimonial');
-const navDots = document.querySelectorAll('.nav-dot');
-
-function showSlide(index) {
-    testimonials.forEach((testimonial, i) => {
-        testimonial.classList.toggle('active', i === index);
-    });
-    navDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
+// Contact Form Handling
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Thank you for reaching out. Lift Financial Holdings will respond to your inquiry shortly at the email address provided.');
+        this.reset();
     });
 }
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % testimonials.length;
-    showSlide(currentSlide);
-}
-
-// Auto-advance testimonials
-setInterval(nextSlide, 5000);
-
-// Manual navigation for testimonials
-navDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        currentSlide = index;
-        showSlide(currentSlide);
-    });
-});
-
-// FAQ Accordion
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const faqItem = question.parentElement;
-        const isActive = faqItem.classList.contains('active');
-        
-        // Close all FAQ items
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
-        });
-        
-        // Open clicked item if it wasn't active
-        if (!isActive) {
-            faqItem.classList.add('active');
-        }
-    });
-});
-
-// Form Submission
-document.querySelector('.contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const name = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const message = this.querySelector('textarea').value;
-    
-    // Simple validation
-    if (!name || !email || !message) {
-        alert('Please fill in all fields.');
-        return;
-    }
-    
-    // Simulate form submission
-    alert('Thank you for your message! We\'ll get back to you soon.');
-    this.reset();
-});
-
-// NOTE: Compliance edit: replaced lending/guarantee language on 2025-10-28
-// NOTE: Further compliance edit: removed all credit services language on 2025-10-28
-// CTA Button Actions
-document.querySelectorAll('.cta-primary, .plan-button, .nav-link.cta-button').forEach(button => {
-    button.addEventListener('click', function(e) {
-        if (this.textContent.includes('Contact') || this.textContent.includes('Learn') || this.textContent.includes('Get Started')) {
-            e.preventDefault();
-            // Direct to contact section
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert('Thank you for your interest! Please contact us at Admin@LiftFi.io or call 1-281-310-1114 to discuss our consulting services.');
-            }
-        }
-    });
-});
 
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.backdropFilter = 'blur(10px)';
+    if (!navbar) return;
+    if (window.scrollY > 40) {
+        navbar.style.background = 'rgba(11, 11, 13, 0.98)';
     } else {
-        navbar.style.background = 'var(--white)';
-        navbar.style.backdropFilter = 'none';
+        navbar.style.background = 'rgba(11, 11, 13, 0.92)';
     }
 });
 
-// Animate elements on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Scroll-triggered fade-in animations
+const animatedSelectors = [
+    '.portfolio-card',
+    '.treasury-card',
+    '.timeline-item',
+    '.readiness-item',
+    '.pillar',
+    '.cc-panel',
+    '.cc-check-item',
+    '.org-node'
+];
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, { threshold: 0.12 });
 
-// Observe elements for animation
-document.querySelectorAll('.step, .service-card, .pricing-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+document.querySelectorAll(animatedSelectors.join(', ')).forEach(el => {
+    el.classList.add('fade-in');
     observer.observe(el);
 });
-
-// Add loading animation to buttons
-document.querySelectorAll('button').forEach(button => {
-    button.addEventListener('click', function() {
-        if (!this.classList.contains('loading')) {
-            this.classList.add('loading');
-            setTimeout(() => {
-                this.classList.remove('loading');
-            }, 1000);
-        }
-    });
-});
-
-// Initialize page
-document.addEventListener('DOMContentLoaded', () => {
-    // Show first testimonial
-    showSlide(0);
-    
-    // Add smooth reveal animation to hero section
-    setTimeout(() => {
-        document.querySelector('.hero-content').style.opacity = '1';
-        document.querySelector('.hero-visual').style.opacity = '1';
-    }, 100);
-});
-

@@ -1,81 +1,56 @@
-# LiftFi - Financial Education & Business Consulting Platform
+# Lift Financial Holdings LLC - Private Holding Company Website
 
 ## Overview
-LiftFi is a static website providing financial education and business consulting services. The platform focuses on land development advisory, capital structuring strategies, and business planning education. LiftFi does NOT offer any credit-related services.
+Lift Financial Holdings LLC is a static website positioning the company as the parent/holding company and financial command center for a diversified business ecosystem founded by Kevin Jackson. The ecosystem spans technology, logistics, real estate, media, travel, hospitality, and strategic investments.
 
 ## Project Structure
-- `index.html` - Main landing page with services, pricing, testimonials, FAQ, and contact sections
-- `capital-structuring.html` - Capital structuring and land development information page
-- `styles.css` - Main stylesheet with responsive design
-- `script.js` - JavaScript for interactive features (navigation, testimonials slider, FAQ accordion, forms)
-- `logo.png` - LiftFi logo
+- `index.html` - Main landing page: hero, about, business architecture (ownership chart), portfolio companies, financial architecture, treasury & capital strategy, growth roadmap timeline, investor readiness, vision, and contact sections
+- `command-center.html` - Internal/admin-style page summarizing current vs. target structure, active companies, DBAs, next steps, documents needed, advisor review items, and funding readiness checklist (noindex)
+- `capital-structuring.html` - Capital structuring and land development educational page (restyled to match brand)
+- `styles.css` - Luxury black/white/gold stylesheet (Playfair Display + Inter typography)
+- `script.js` - Mobile nav, smooth scrolling, contact form handling, scroll fade-in animations
+- `logo.png` - Company logo
 
 ## Technology Stack
 - Pure HTML5, CSS3, and JavaScript (no frameworks)
 - Font Awesome icons
-- Google Fonts (Inter)
-- Static file hosting
+- Google Fonts (Playfair Display for headings, Inter for body)
+- Static file hosting via Python HTTP server on port 5000
 
-## Features
-- Responsive design with mobile navigation
-- Testimonials slider with auto-advance
-- FAQ accordion with compliance questions
-- Contact form
-- Smooth scrolling navigation
-- Scroll animations
-- Mobile hamburger menu
-- Comprehensive compliance disclaimers throughout site
+## Brand & Design
+- Luxury black (#0B0B0D), white, and gold (#C9A227) color palette
+- Investor-ready, professional, strategic tone
+- Serif display headings (Playfair Display), clean sans body (Inter)
+- Mobile responsive with hamburger navigation
+- Visual ownership chart, portfolio cards, roadmap timeline
+
+## Portfolio Companies Featured
+- Aivara Solutions LLC — technology, software, automation, AI systems
+- FreightSync TMS LLC — logistics technology (ownership interest)
+- New Opportunity Entertainment LLC — media, entertainment, content
+- RichAF Global — travel brand, lifestyle media
+- International Property Management — short-term rental & property services
+- Future Ventures — real estate, investments, acquisitions
+
+## Compliance Notes
+**CRITICAL**: All language must remain professional and avoid guarantees. Use "designed to," "structured to," "focused on," "intended to."
+
+**What the website must NOT claim:**
+- ❌ NO offers of securities or solicitation of investment
+- ❌ NO guarantees of returns or outcomes
+- ❌ NO lending, financing, or credit-related services (prior Wells Fargo compliance requirement — company is NOT a lender, bank, broker, credit repair organization, or credit services provider)
+- ❌ NO financial, legal, or tax advice
+
+Footer disclaimer on every page states the above explicitly.
 
 ## Recent Changes
-- 2025-10-28: **CRITICAL Compliance Update - Removed ALL Credit Services** - In response to Wells Fargo concerns, completely removed all credit-related services from website:
-  - **REMOVED**: All credit builder subscription services and language
-  - **REMOVED**: All credit consulting services  
-  - **REMOVED**: All credit wellness membership offerings
-  - **REMOVED**: All credit monitoring services
-  - **REMOVED**: All credit repair services
-  - **REMOVED**: All tradeline reporting language
-  - **CHANGED**: Repositioned as ONLY financial education and business consulting company
-  - **CHANGED**: All testimonials now reflect business consulting (not credit services)
-  - **CHANGED**: Pricing section now shows consulting services only (contact for pricing)
-  - **CHANGED**: FAQ completely rewritten to explicitly state NO credit services offered
-  - **ADDED**: Explicit disclaimers that company does NOT offer any credit-related services
-  - **FOCUS**: Services now limited to: Financial education resources and Land development business consulting
+- 2026-07-03: **Complete repositioning as parent holding company** — Rebuilt entire site with luxury black/white/gold design. Added hero, about (Kevin Jackson founder), ownership structure chart, portfolio company cards, financial architecture, treasury/reserve strategy, 5-phase growth roadmap, investor readiness, vision, contact sections, and new Command Center internal page. Restyled capital-structuring.html to match.
+- 2025-10-28: Compliance update removing all credit-related services (Wells Fargo requirement)
 - 2025-10-28: Initial import from GitHub and Replit environment setup
 
 ## Deployment
-- Static website served via Python HTTP server
-- Hosted on port 5000 for Replit compatibility
+- Static website served via Python HTTP server on port 5000
 - No build process required
-
-## Compliance Notes
-**CRITICAL**: LiftFi does NOT offer any credit-related services whatsoever. The company provides ONLY:
-1. Financial education resources (educational content only)
-2. Business consulting for land development and capital structuring
-
-**What LiftFi is NOT and does NOT offer:**
-- ❌ NOT a lender, bank, broker, or credit services provider
-- ❌ NO credit builder subscriptions or memberships
-- ❌ NO credit consulting or credit repair services
-- ❌ NO credit monitoring or credit score services
-- ❌ NO tradeline reporting or payment reporting to credit bureaus
-- ❌ NO credit wellness programs or credit building services
-- ❌ NO loans, financing, or lending of any kind
-- ❌ NO handling of payments, deposits, or financial transactions
-
-**All disclaimers explicitly state:**
-- Company does not offer credit services
-- Company does not offer credit repair
-- Company does not offer lending or financing
-- Services are strictly educational and advisory only
-- No guarantees of any outcomes
-
-**Website sections updated:**
-- Hero: Repositioned as "Financial Education & Business Consulting"
-- Services: Only education and business consulting listed
-- Pricing: Contact-based consulting services only
-- Testimonials: Changed to business consulting testimonials
-- FAQ: Explicitly denies offering any credit services
-- Footer: Comprehensive disclaimer about no credit services
 
 ## Contact Information
 - Email: Admin@LiftFi.io
