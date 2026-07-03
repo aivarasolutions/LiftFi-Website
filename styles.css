@@ -7,24 +7,21 @@
 
 :root {
     --black: #0B0B0D;
-    --black-soft: #121215;
+    --black-soft: #111116;
     --charcoal: #1A1A1F;
-    --gold: #C9A227;
-    --gold-light: #E5C558;
-    --gold-dim: rgba(201, 162, 39, 0.35);
+    --gold: #C8A96A;
+    --gold-light: #E6C678;
+    --gold-dim: rgba(200, 169, 106, 0.35);
+    --gold-faint: rgba(200, 169, 106, 0.12);
     --white: #FFFFFF;
     --off-white: #F6F5F1;
-    --text-light: #C9C9CF;
+    --text-light: #B8B8B8;
     --text-muted: #8A8A93;
     --border-dark: rgba(255, 255, 255, 0.08);
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.5);
     --border-radius: 10px;
     --transition: all 0.3s ease;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
@@ -75,14 +72,32 @@ section {
 .section-subtitle {
     text-align: center;
     color: var(--text-muted);
-    max-width: 680px;
+    max-width: 760px;
     margin: 0 auto 50px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
 .fineprint {
     font-size: 0.85rem;
     color: var(--text-muted);
+}
+
+/* Brand Mark (text-based logo) */
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+    background: linear-gradient(150deg, rgba(200, 169, 106, 0.10), transparent 65%);
+    flex-shrink: 0;
 }
 
 /* Navigation */
@@ -95,6 +110,10 @@ section {
     border-bottom: 1px solid var(--border-dark);
     z-index: 1000;
     transition: var(--transition);
+}
+
+.navbar.scrolled {
+    background: rgba(11, 11, 13, 0.98);
 }
 
 .nav-container {
@@ -110,7 +129,8 @@ section {
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    text-decoration: none;
 }
 
 .logo {
@@ -187,8 +207,8 @@ section {
 .hero {
     padding: 200px 0 120px;
     background:
-        radial-gradient(ellipse at 70% 20%, rgba(201, 162, 39, 0.10), transparent 55%),
-        radial-gradient(ellipse at 20% 80%, rgba(201, 162, 39, 0.05), transparent 50%),
+        radial-gradient(ellipse at 70% 20%, rgba(200, 169, 106, 0.10), transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(200, 169, 106, 0.05), transparent 50%),
         var(--black);
     border-bottom: 1px solid var(--border-dark);
 }
@@ -204,7 +224,7 @@ section {
 }
 
 .hero-content {
-    max-width: 820px;
+    max-width: 860px;
     margin: 0 auto;
     text-align: center;
 }
@@ -223,6 +243,9 @@ section {
     font-size: 1.2rem;
     color: var(--text-light);
     margin-bottom: 40px;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-cta {
@@ -255,7 +278,14 @@ section {
 
 .cta-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(201, 162, 39, 0.35);
+    box-shadow: 0 10px 28px rgba(200, 169, 106, 0.35);
+}
+
+.cta-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .cta-secondary {
@@ -326,9 +356,9 @@ section {
 .pillar {
     background: var(--charcoal);
     border: 1px solid var(--border-dark);
+    border-top: 2px solid var(--gold-dim);
     border-radius: var(--border-radius);
-    padding: 28px 20px;
-    text-align: center;
+    padding: 26px 22px;
     transition: var(--transition);
 }
 
@@ -337,21 +367,80 @@ section {
     transform: translateY(-3px);
 }
 
+.pillar h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.pillar p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
 .pillar i {
     color: var(--gold);
     font-size: 1.6rem;
     margin-bottom: 12px;
 }
 
-.pillar h4 {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+/* Leadership */
+.leadership {
+    background: var(--black);
+}
+
+.leadership-card {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 30px auto 0;
+    background: var(--charcoal);
+    border: 1px solid var(--border-dark);
+    border-left: 2px solid var(--gold);
+    border-radius: var(--border-radius);
+    padding: 44px 48px;
+}
+
+.leadership-mark {
+    flex-shrink: 0;
+    width: 88px;
+    height: 88px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: linear-gradient(150deg, var(--gold-faint), transparent 65%);
+}
+
+.leadership-body h3 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.leadership-role {
+    color: var(--gold);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.leadership-body p {
+    color: var(--text-light);
+    font-size: 1.02rem;
 }
 
 /* Business Architecture */
 .architecture {
-    background: var(--black);
+    background: var(--black-soft);
 }
 
 .org-chart {
@@ -397,9 +486,17 @@ section {
 }
 
 .org-node.parent {
-    background: linear-gradient(135deg, rgba(201, 162, 39, 0.15), rgba(201, 162, 39, 0.05));
+    background: linear-gradient(135deg, rgba(200, 169, 106, 0.15), rgba(200, 169, 106, 0.05));
     border: 1px solid var(--gold);
-    padding: 24px 44px;
+    padding: 26px 52px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+}
+
+.org-trunk {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(to bottom, var(--gold), var(--gold-dim));
 }
 
 .org-connector {
@@ -426,9 +523,133 @@ section {
     color: var(--text-muted);
 }
 
+.org-level.org-tiers {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    max-width: 1150px;
+    position: relative;
+    padding-top: 24px;
+}
+
+.org-level.org-tiers::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim) 15%, var(--gold-dim) 85%, transparent);
+}
+
+.org-node.tier {
+    position: relative;
+    text-align: left;
+    padding: 26px 20px;
+    border-top: 2px solid var(--gold-dim);
+    transition: var(--transition);
+}
+
+.org-node.tier::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    width: 1px;
+    height: 24px;
+    background: var(--gold-dim);
+}
+
+.org-node.tier:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-3px);
+}
+
+.org-node.tier h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+
+.org-node.tier ul {
+    list-style: none;
+}
+
+.org-node.tier li {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-light);
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border-dark);
+    line-height: 1.45;
+}
+
+.org-node.tier li:last-child {
+    border-bottom: none;
+}
+
+.org-node.tier li small {
+    display: inline;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+.org-node.tier.future {
+    border-style: dashed;
+    border-top-style: solid;
+}
+
+.org-note {
+    text-align: center;
+    margin-top: 34px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Badges */
+.card-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 5px 12px;
+    border-radius: 3px;
+    line-height: 1.4;
+}
+
+.badge-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+}
+
+.badge-dark {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-dark);
+    color: var(--text-light);
+}
+
+.badge-outline {
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+}
+
 /* Portfolio */
 .portfolio {
-    background: var(--black-soft);
+    background: var(--black);
 }
 
 .portfolio-grid {
@@ -442,8 +663,10 @@ section {
     background: var(--charcoal);
     border: 1px solid var(--border-dark);
     border-radius: var(--border-radius);
-    padding: 36px 28px;
+    padding: 34px 28px;
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-card:hover {
@@ -470,12 +693,30 @@ section {
 
 .portfolio-card h3 {
     font-size: 1.2rem;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
+}
+
+.card-category {
+    color: var(--gold);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 14px;
 }
 
 .portfolio-card p {
     color: var(--text-muted);
     font-size: 0.95rem;
+}
+
+.card-role {
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 0.83rem !important;
+    color: var(--text-light) !important;
+    border-top: 1px solid var(--border-dark);
+    margin-top: 18px;
 }
 
 .portfolio-card.future-card {
@@ -484,7 +725,7 @@ section {
 
 /* Financial Architecture */
 .financial {
-    background: var(--black);
+    background: var(--black-soft);
 }
 
 .financial-grid {
@@ -498,6 +739,7 @@ section {
 .financial-text p {
     font-size: 1.1rem;
     margin-bottom: 22px;
+    color: var(--text-light);
 }
 
 .financial-list {
@@ -517,6 +759,13 @@ section {
     font-size: 0.95rem;
 }
 
+.financial-list li::before {
+    content: '—';
+    color: var(--gold);
+    margin-right: 14px;
+    font-weight: 600;
+}
+
 .financial-list i {
     color: var(--gold);
     margin-right: 12px;
@@ -524,7 +773,7 @@ section {
 
 /* Treasury */
 .treasury {
-    background: var(--black-soft);
+    background: var(--black);
 }
 
 .treasury-grid {
@@ -540,6 +789,16 @@ section {
     padding: 30px 18px;
     text-align: center;
     transition: var(--transition);
+    position: relative;
+}
+
+.treasury-card::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 16px;
 }
 
 .treasury-card:hover {
@@ -562,7 +821,7 @@ section {
 
 /* Roadmap Timeline */
 .roadmap {
-    background: var(--black);
+    background: var(--black-soft);
 }
 
 .timeline {
@@ -578,7 +837,7 @@ section {
     top: 0;
     bottom: 0;
     width: 1px;
-    background: linear-gradient(to bottom, var(--gold), rgba(201, 162, 39, 0.1));
+    background: linear-gradient(to bottom, var(--gold), rgba(200, 169, 106, 0.1));
 }
 
 .timeline-item {
@@ -614,9 +873,9 @@ section {
     color: var(--text-muted);
 }
 
-/* Readiness */
+/* Readiness / Strategic Focus */
 .readiness {
-    background: var(--black-soft);
+    background: var(--black);
 }
 
 .readiness-grid {
@@ -636,6 +895,14 @@ section {
     transition: var(--transition);
 }
 
+.readiness-item::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.6rem;
+    margin-right: 14px;
+    vertical-align: 2px;
+}
+
 .readiness-item:hover {
     border-color: var(--gold-dim);
 }
@@ -645,11 +912,16 @@ section {
     margin-right: 12px;
 }
 
+.readiness-note {
+    text-align: center;
+    margin-top: 34px;
+}
+
 /* Vision */
 .vision {
     background:
-        radial-gradient(ellipse at 50% 0%, rgba(201, 162, 39, 0.08), transparent 60%),
-        var(--black);
+        radial-gradient(ellipse at 50% 0%, rgba(200, 169, 106, 0.08), transparent 60%),
+        var(--black-soft);
     text-align: center;
 }
 
@@ -668,7 +940,7 @@ section {
 
 /* Contact */
 .contact {
-    background: var(--black-soft);
+    background: var(--black);
 }
 
 .contact-grid {
@@ -683,6 +955,8 @@ section {
     align-items: flex-start;
     gap: 18px;
     margin-bottom: 34px;
+    padding-left: 18px;
+    border-left: 1px solid var(--gold-dim);
 }
 
 .contact-item i {
@@ -700,16 +974,43 @@ section {
 
 .contact-item h4 {
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    margin-bottom: 2px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 4px;
 }
 
-.contact-item p {
-    color: var(--text-muted);
+.contact-item p,
+.contact-item a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.02rem;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--gold-light);
 }
 
 .contact-form .form-group {
     margin-bottom: 18px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-label .optional {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
 }
 
 .contact-form input,
@@ -728,7 +1029,9 @@ section {
 
 .contact-form select {
     appearance: none;
-    color: var(--text-muted);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23C8A96A' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
 }
 
 .contact-form input::placeholder,
@@ -747,7 +1050,40 @@ section {
     width: 100%;
 }
 
-/* Command Center */
+.form-status {
+    display: none;
+    margin-bottom: 18px;
+    padding: 13px 18px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.form-status.success,
+.form-status.error,
+.form-status.pending {
+    display: block;
+}
+
+.form-status.success {
+    background: rgba(106, 168, 106, 0.10);
+    border: 1px solid rgba(106, 168, 106, 0.4);
+    color: #A9CFA9;
+}
+
+.form-status.error {
+    background: rgba(190, 90, 90, 0.10);
+    border: 1px solid rgba(190, 90, 90, 0.4);
+    color: #D9A0A0;
+}
+
+.form-status.pending {
+    background: var(--gold-faint);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-light);
+}
+
+/* Command Center (internal page) */
 .cc-section {
     background: var(--black);
     padding: 80px 0;
@@ -843,7 +1179,7 @@ section {
 .footer-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 16px;
 }
 
@@ -900,19 +1236,52 @@ section {
     font-size: 0.85rem;
 }
 
-/* Scroll Animations */
-.fade-in {
+/* Scroll Animations
+   Content is visible by default. Animation styles only apply when JS has
+   loaded (html.js-enabled) AND the element has been given the .fade-in class
+   by script.js. Reduced-motion users never get animations. */
+.js-enabled .fade-in {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.fade-in.visible {
+.js-enabled .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .pillar:hover,
+    .portfolio-card:hover,
+    .treasury-card:hover,
+    .org-node.tier:hover,
+    .cta-primary:hover {
+        transform: none;
+    }
+}
+
 /* Responsive */
+@media (max-width: 1100px) {
+    .org-level.org-tiers {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .org-level.org-tiers::before {
+        display: none;
+    }
+
+    .org-node.tier::before {
+        display: none;
+    }
+}
+
 @media (max-width: 992px) {
     .about-grid,
     .financial-grid,
@@ -937,6 +1306,10 @@ section {
 
     .footer-content {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .leadership-card {
+        padding: 36px 32px;
     }
 }
 
@@ -984,12 +1357,20 @@ section {
         grid-template-columns: 1fr;
     }
 
-    .org-level.subsidiaries {
+    .org-level.subsidiaries,
+    .org-level.org-tiers {
         grid-template-columns: 1fr;
     }
 
     .about-pillars {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .leadership-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
     }
 
     section {
@@ -1008,7 +1389,23 @@ section {
         font-size: 0.95rem;
     }
 
+    .brand-mark {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+    }
+
     .hero-title {
         font-size: 2rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        text-align: center;
     }
 }
