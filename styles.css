@@ -1152,14 +1152,14 @@ section {
     flex-shrink: 0;
 }
 
-.photo-placeholder-note {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-align: center;
-    max-width: 130px;
-    line-height: 1.5;
+.founder-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid var(--gold-dim);
+    box-shadow: 0 0 0 6px rgba(200, 169, 106, 0.08);
 }
 
 .leadership-focus {
