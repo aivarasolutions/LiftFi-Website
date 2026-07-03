@@ -1,0 +1,316 @@
+Please implement the V2 polish updates for [www.liftfi.io](http://www.liftfi.io).
+
+The recent redesign is strong and should mostly be preserved. Do not rebuild the entire site. This update should focus on critical cleanup, investor-readiness, SEO/social sharing, contact form reliability, accessibility, and premium design polish.
+
+Lift Financial Holdings LLC / Lift Fi must remain positioned as a private holding company. Do not add language that makes the company sound like a bank, lender, broker-dealer, investment advisor, securities issuer, or public investment opportunity. Keep all legal disclaimers intact.
+
+Use safe wording such as:
+
+* private holding company
+* designed to
+* structured to
+* focused on
+* target structure
+* strategic growth
+* ownership interest
+* strategic partner inquiry
+* request access
+
+Do not use language such as:
+
+* guaranteed returns
+* invest now
+* public offering
+* securities offering
+* passive income guarantee
+* bank
+* lender
+* investment advisor
+* broker-dealer
+
+Main V2 Tasks
+
+1. Remove or Protect Command Center
+
+The command-center.html page is still live if someone has the direct URL.
+
+Fix this immediately.
+
+Preferred option:
+
+* Completely delete command-center.html from the project and make sure it is no longer deployed.
+
+Alternative only if deletion breaks the project:
+
+* Password-protect it or block it from public access.
+* Remove all internal operational checklist language from anything publicly reachable.
+
+Confirm:
+
+* Command Center is not linked in nav.
+* Command Center is not linked in footer.
+* Command Center is not indexed.
+* Direct access does not expose internal checklists.
+
+2. Add Real Contact Form Endpoint
+
+The current mailto fallback is not reliable enough for investor/partner inquiries.
+
+Update the Contact form to use a real backend-ready endpoint.
+
+Use one of these approaches:
+
+Option A, preferred if available:
+
+* Use Formspree.
+* Set the form action to:
+  https://formspree.io/f/YOUR_ENDPOINT_HERE
+* Use method="POST".
+* Keep fields:
+
+  * Name
+  * Email
+  * Phone optional
+  * Inquiry Type
+  * Message
+
+Option B, if the project already has backend/email support:
+
+* Wire the form into the existing backend/email handler.
+* Use an environment variable for the destination email.
+* Send inquiries to [Admin@LiftFi.io](mailto:Admin@LiftFi.io).
+* Add optional CC to [Kevin@AivaraSolutions.com](mailto:Kevin@AivaraSolutions.com) if supported.
+
+Important:
+
+* Remove the mailto fallback as the main submission method.
+* Do not use a fake JS alert.
+* Add clear success and error messages.
+* Add validation.
+* Keep styling premium and professional.
+
+3. Add SEO and Social Sharing Meta Tags
+
+Add proper SEO, Open Graph, and Twitter/X preview tags to the head of index.html.
+
+Add or update:
+
+<title>Lift Financial Holdings LLC | Private Holding Company</title>
+<meta name="description" content="Lift Financial Holdings LLC is a private holding company structured to organize ownership interests, operating companies, brand assets, technology platforms, and strategic growth opportunities.">
+
+<meta property="og:title" content="Lift Financial Holdings LLC">
+<meta property="og:description" content="A private holding company structured to organize operating companies, ownership interests, brand assets, technology platforms, and long-term strategic growth.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.liftfi.io/">
+<meta property="og:image" content="https://www.liftfi.io/og-image.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lift Financial Holdings LLC">
+<meta name="twitter:description" content="A private holding company structured for disciplined ownership, operating infrastructure, and long-term strategic growth.">
+<meta name="twitter:image" content="https://www.liftfi.io/og-image.jpg">
+
+Create an og-image.jpg asset:
+
+* Size: 1200x630
+* Matte black background
+* Gold LF mark or Lift Fi wordmark
+* Simple premium layout
+* Text: “Lift Financial Holdings LLC”
+* Subtext: “Structure. Discipline. Long-Term Ownership.”
+* No cheesy stock charts, crypto graphics, or generic finance icons.
+
+4. Add Apple Touch Icon
+
+Create or export a standard PNG version of the LF mark.
+
+Add:
+
+<link rel="apple-touch-icon" href="/logo.png">
+
+Make sure the icon looks clean when saved to an iPhone home screen.
+
+5. Improve Accessibility and Contrast
+
+The gray text used on card categories is too dark against the background.
+
+Update muted text colors to pass WCAG AA contrast standards.
+
+Suggested:
+
+* Use #A0A0A8 or lighter for muted text on dark backgrounds.
+* Ensure .card-category, small labels, and descriptive text are readable.
+* Do not make the site too bright; keep the luxury dark aesthetic.
+
+6. Add New Section: Investment & Operating Thesis
+
+Add this new section immediately below the Hero and above Who We Are.
+
+Section title:
+Investment & Operating Thesis
+
+Copy:
+“Lift Fi targets asset-heavy and technology-enabled businesses where centralized capital discipline, operational systems, and shared infrastructure can support long-term growth. The company’s focus spans B2B software, logistics operations, real estate-backed hospitality assets, and brand-driven platforms designed to strengthen the broader Lift Fi ecosystem.”
+
+Add 3 or 4 premium thesis cards:
+
+Card 1:
+Title: Asset-Backed Discipline
+Copy: “Prioritizing opportunities with durable operating value, tangible infrastructure, or clear strategic utility inside the broader ecosystem.”
+
+Card 2:
+Title: Technology-Enabled Operations
+Copy: “Building and aligning systems that improve reporting, automation, visibility, and operational control across portfolio activity.”
+
+Card 3:
+Title: Strategic Ownership
+Copy: “Structuring ownership interests, brand assets, and operating entities with clear governance, separation, and long-term scalability.”
+
+Card 4:
+Title: Ecosystem Growth
+Copy: “Focusing on opportunities that can compound through shared systems, capital discipline, and cross-company operating leverage.”
+
+Keep the language compliant. Do not imply guaranteed returns or public investment solicitation.
+
+7. Improve Strategic Focus / Deal Criteria Section
+
+Enhance the existing “What Lift Fi Looks For” or Strategic Focus section.
+
+Add clear deal criteria categories:
+
+* B2B software and automation platforms
+* Logistics and transportation operators
+* Real estate-backed hospitality assets
+* Short-term rental and property management infrastructure
+* Brand, media, and digital commerce assets
+* Strategic acquisitions with operational upside
+
+Add a short paragraph:
+“Lift Fi evaluates opportunities based on strategic fit, operational durability, ecosystem value, and the ability to support disciplined long-term growth.”
+
+Add a small compliance note:
+“Any partnership, acquisition, or capital discussion is private, selective, and subject to appropriate diligence, documentation, and legal review.”
+
+8. Add Request Data Room Access CTA
+
+Add a secondary CTA button in the Strategic Focus / Deal Criteria section.
+
+Button text:
+Request Data Room Access
+
+Behavior:
+
+* Link to the #contact section.
+* When clicked, scroll to contact.
+* If possible, pre-select “Investor” or “Strategic Partner” in the inquiry type dropdown.
+* If pre-selecting is not easy, simply scroll to contact.
+
+Add supporting microcopy:
+“For qualified strategic partners, acquisition conversations, or private diligence requests.”
+
+Do not create a public data room yet.
+Do not expose financials or internal documents publicly.
+
+9. Portfolio Card Improvements
+
+Keep the existing badges because they are strong:
+
+* Active LLC
+* Brand / DBA
+* Ownership Interest
+* In Development
+
+Now add clickable portfolio names.
+
+For each company/brand title, wrap it in an anchor tag.
+
+Use real links only where known and safe:
+
+* Aivara Solutions: https://www.aivarasolutions.com if available, otherwise leave as "#"
+* FreightSync: https://portal.freightsynctms.com or https://www.freightsynctms.com if available in the project, otherwise leave as "#"
+* RichAF Global: https://richaf.global
+* International Property Management: https://www.ipm.services
+* Lift Fi: https://www.liftfi.io
+
+If a URL is unknown, use href="#" and add aria-disabled or a “Coming Soon” style. Do not invent websites.
+
+Add:
+
+* Subtle hover lift
+* Gold title hover
+* Thin-line gold icon or monogram watermark in the background of each card
+* Keep the cards premium and not cluttered
+
+10. Clarify Org Chart Labels
+
+Review the org chart labels.
+
+If “Technology & Systems” and “Real Estate & Hospitality” appear beside actual legal entities, make sure they are clearly presented as operating verticals or strategic categories, not separate legal entities.
+
+Preferred wording:
+
+* Operating Companies / Active LLCs
+* Ownership Interests
+* Brand Assets / DBAs
+* Operating Verticals
+* Technology & Systems
+* Real Estate & Hospitality Assets
+* Strategic Acquisitions / Target Structure
+
+Make sure “Target Structure” is clearly marked where future items are shown.
+
+11. Roadmap Layout Polish
+
+On desktop, the roadmap currently feels too left-heavy.
+
+Update the CSS so:
+
+* The roadmap/timeline is centered on desktop, or
+* Timeline items alternate left/right in a balanced layout.
+
+On mobile:
+
+* Keep it as a clean single-column vertical timeline.
+* No horizontal overflow.
+
+12. Founder Section Preparation
+
+Do not invent credentials, numbers, or achievements.
+
+Add optional placeholders for:
+
+* Founder photo
+* LinkedIn link
+* Key operating focus areas
+
+If no real photo asset exists, keep the current layout but add a polished placeholder card that says:
+“Founder profile image coming soon.”
+
+If there is already a suitable image asset in the project, use it.
+
+Slightly improve founder copy to:
+“Kevin Jackson is the founder of Lift Financial Holdings LLC and the operator behind a growing ecosystem of businesses across logistics, hospitality, technology, property operations, and brand development. His focus is building structured companies, centralized systems, disciplined capital allocation, and scalable operating infrastructure.”
+
+Do not overhype. Keep it credible.
+
+13. Final QA Checklist
+
+Before finishing, confirm:
+
+* command-center.html is deleted or protected from public access.
+* No internal checklist is publicly reachable.
+* Contact form uses a real backend-ready endpoint.
+* No fake alert-only form behavior remains.
+* SEO title and meta description are added.
+* Open Graph and Twitter/X preview tags are added.
+* og-image.jpg exists and is correctly referenced.
+* apple-touch-icon is added.
+* Contrast issue is fixed.
+* Investment & Operating Thesis section is added.
+* Strategic Focus / Deal Criteria section is enhanced.
+* Request Data Room Access CTA is added.
+* Portfolio cards include links or safe placeholders.
+* Org chart labels do not confuse categories with legal entities.
+* Roadmap layout is visually balanced on desktop.
+* Mobile layout remains clean.
+* Legal disclaimers remain intact.
+* No language implies guaranteed returns, public investment solicitation, lending, banking, investment advisory, or broker-dealer activity.

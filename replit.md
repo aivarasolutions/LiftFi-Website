@@ -1,12 +1,13 @@
 # Lift Financial Holdings LLC - Private Holding Company Website
 
 ## Overview
-Lift Financial Holdings LLC is a static website positioning the company as the parent/holding company and financial command center for a diversified business ecosystem founded by Kevin Jackson. The ecosystem spans technology, logistics, real estate, media, travel, hospitality, and strategic investments.
+Lift Financial Holdings LLC is a static website positioning the company as the parent/holding company for a diversified business ecosystem founded by Kevin Jackson. The ecosystem spans technology, logistics, real estate, media, travel, hospitality, and strategic investments.
 
 ## Project Structure
-- `index.html` - Main landing page: hero, who we are, leadership (Kevin Jackson), business architecture (hierarchical holding structure), portfolio/ecosystem cards with status badges, financial architecture, treasury & capital strategy, 4-phase growth roadmap, strategic focus, vision, and contact sections
-- `command-center.html` - INTERNAL ONLY page (noindex/nofollow, deliberately unlinked from all public navigation/footer) summarizing current vs. target structure, active companies, DBAs, next steps, documents needed, advisor review items, and funding readiness checklist
+- `index.html` - Main landing page: hero, investment & operating thesis, who we are, leadership (Kevin Jackson), business architecture (hierarchical holding structure with tier-type tags), portfolio/ecosystem cards with status badges and linked titles, financial architecture, treasury & capital strategy, 4-phase alternating growth roadmap, strategic focus with deal criteria + data room CTA, vision, and contact sections
 - `capital-structuring.html` - Capital structuring and land development educational page (restyled to match brand)
+- `og-image.jpg` - 1200x630 social sharing image (matte black + gold LF mark); `logo.png` - LF mark PNG used as apple-touch-icon
+- **command-center.html was DELETED in V2 (2026-07-03)** per user instruction — internal checklists must never be publicly reachable. Do not recreate it.
 - `styles.css` - Luxury matte black/charcoal/champagne-gold stylesheet (Playfair Display + Inter typography); text-based "LF" brand mark (no image logo)
 - `script.js` - Mobile nav, smooth scrolling, backend-ready contact form (data-endpoint config + mailto fallback), robust scroll fade-in animations (visible-by-default, js-enabled gating, prefers-reduced-motion support)
 
@@ -47,6 +48,7 @@ Footer disclaimer on every page states the above explicitly.
 - Backend-ready: `#contactForm` has a `data-endpoint` attribute (empty by default). Set it to a real endpoint (e.g. CONTACT_FORM_ENDPOINT value) to POST JSON inquiries. With no endpoint configured, the form validates input then opens a pre-filled mailto to Admin@LiftFi.io. Success/error/pending states render in `#formStatus`.
 
 ## Recent Changes
+- 2026-07-03: **V2 polish** — Deleted command-center.html entirely (with all cc-* CSS); added SEO/OG/Twitter meta + generated og-image.jpg (1200x630) and logo.png apple-touch-icon (Pillow-generated, matte black + gold LF); raised --text-muted to #A0A0A8 for WCAG contrast; new Investment & Operating Thesis section (4 cards); Strategic Focus rebuilt with 6 deal criteria + evaluation paragraph + compliance note + "Request Data Room Access" CTA (pre-selects Strategic Partner); portfolio titles linked (richaf.global, ipm.services; others "Site coming soon" placeholders) with LF watermark; org chart tier-type tags (Active LLCs / Brand Assets-DBAs / Operating Vertical / Target Structure); alternating desktop roadmap timeline; founder photo placeholder + focus tags + copy update (property operations). Contact form is Formspree-ready via data-endpoint (awaiting real form ID; honest mailto fallback until then).
 - 2026-07-03: **Investor-ready redesign (v2)** — Champagne/metallic gold palette, text-based LF brand mark, leadership section, hierarchical org chart with gold connecting lines, portfolio badges (Active LLC / Brand-DBA / In Development / Ownership Interest), rewritten 4-phase roadmap (no internal to-do language), strategic focus section, backend-ready contact form with validation and mailto fallback, robust visible-by-default scroll animations with prefers-reduced-motion support, Command Center removed from all public navigation/footer.
 - 2026-07-03: **Complete repositioning as parent holding company** — Rebuilt entire site with luxury black/white/gold design. Added hero, about (Kevin Jackson founder), ownership structure chart, portfolio company cards, financial architecture, treasury/reserve strategy, growth roadmap, investor readiness, vision, contact sections, and Command Center internal page. Restyled capital-structuring.html to match.
 - 2025-10-28: Compliance update removing all credit-related services (Wells Fargo requirement)

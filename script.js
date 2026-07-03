@@ -65,9 +65,8 @@ window.addEventListener('scroll', () => {
         '.timeline-item',
         '.readiness-item',
         '.pillar',
+        '.thesis-card',
         '.leadership-card',
-        '.cc-panel',
-        '.cc-check-item',
         '.org-node'
     ];
 
@@ -104,6 +103,16 @@ window.addEventListener('scroll', () => {
     }, 4000);
 
     window.addEventListener('pagehide', () => observer.disconnect(), { once: true });
+})();
+
+// "Request Data Room Access" CTA: pre-select Strategic Partner, then scroll to contact
+(function initDataRoomCta() {
+    const cta = document.getElementById('dataroomCta');
+    const inquirySelect = document.getElementById('cf-type');
+    if (!cta || !inquirySelect) return;
+    cta.addEventListener('click', () => {
+        inquirySelect.value = 'Strategic Partner';
+    });
 })();
 
 // Contact Form Handling
@@ -165,7 +174,10 @@ window.addEventListener('scroll', () => {
                 setStatus('Submitting your inquiry…', 'pending');
                 const res = await fetch(endpoint, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
                     body: JSON.stringify(payload)
                 });
                 if (!res.ok) throw new Error('Request failed with status ' + res.status);
