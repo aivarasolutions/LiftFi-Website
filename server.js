@@ -37,7 +37,34 @@ if (process.env.NODE_ENV !== "production") {
     });
 }
 
-app.use(express.static(path.join(__dirname), { extensions: ["html"] }));
+// Block non-public project files from being served
+const BLOCKED_PATHS = [
+    /^\/server\.js$/i,
+    /^\/package(-lock)?\.json$/i,
+    /^\/node_modules(\/|$)/i,
+    /^\/attached_assets(\/|$)/i,
+    /^\/replit\.md$/i,
+    /^\/pyproject\.toml$/i,
+    /^\/uv\.lock$/i,
+    /^\/snippets(\/|$)/i,
+];
+app.use((req, res, next) => {
+    let pathname;
+    try {
+        pathname = decodeURIComponent(req.path);
+    } catch {
+        return res.status(400).send("Bad request");
+    }
+    // Block dotfiles/dot-directories anywhere in the path and denylisted files
+    if (pathname.split("/").some((seg) => seg.startsWith(".") && seg !== "." && seg !== "..") ||
+        pathname.includes("..") ||
+        BLOCKED_PATHS.some((re) => re.test(pathname))) {
+        return res.status(404).send("Not found");
+    }
+    next();
+});
+
+app.use(express.static(path.join(__dirname), { extensions: ["html"], dotfiles: "ignore" }));
 
 // ----- Helpers -----
 const escapeHtml = (value) =>

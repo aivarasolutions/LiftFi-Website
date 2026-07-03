@@ -14,10 +14,11 @@ Lift Financial Holdings LLC is a static website positioning the company as the p
 - `script.js` - Mobile nav, smooth scrolling, backend-ready contact form (data-endpoint config + mailto fallback), robust scroll fade-in animations (visible-by-default, js-enabled gating, prefers-reduced-motion support)
 
 ## Technology Stack
-- Pure HTML5, CSS3, and JavaScript (no frameworks)
+- Pure HTML5, CSS3, and JavaScript frontend (no frameworks)
+- Node.js Express backend (`server.js`) — serves static files + `/api/contact` email endpoint on port 5000
+- Resend email via Replit connector (`@replit/connectors-sdk`) — credentials handled server-side only, never exposed to frontend
 - Font Awesome icons
 - Google Fonts (Playfair Display for headings, Inter for body)
-- Static file hosting via Python HTTP server on port 5000
 
 ## Brand & Design
 - **Official Lift Fi brand identity (Crest + Holding Architecture)**: metallic gold shield, gold canopy beam, three white pillars, serif "Lift Fi" wordmark, champagne "LIFT FINANCIAL HOLDINGS LLC" subtitle
@@ -47,10 +48,19 @@ Lift Financial Holdings LLC is a static website positioning the company as the p
 
 Footer disclaimer on every page states the above explicitly.
 
-## Contact Form
-- Backend-ready: `#contactForm` has a `data-endpoint` attribute (empty by default). Set it to a real endpoint (e.g. CONTACT_FORM_ENDPOINT value) to POST JSON inquiries. With no endpoint configured, the form validates input then opens a pre-filled mailto to Admin@LiftFi.io. Success/error/pending states render in `#formStatus`.
+## Contact Form / Email Workflow (Resend)
+- `#contactForm` POSTs JSON to `/api/contact` (data-endpoint attribute). If endpoint is ever emptied, form falls back to mailto admin@liftfi.io.
+- `server.js` sends TWO emails per submission via the Resend Replit connector:
+  1. **Internal notification** → admin@liftfi.io + kevin@aivarasolutions.com, From "Lift Fi <admin@liftfi.io>", Reply-To = lead's email, subject "New Lift Fi Inquiry — [Name]", all form fields + source + Central Time timestamp
+  2. **Customer confirmation** → submitter, From "Lift Fi <admin@liftfi.io>", Reply-To admin@liftfi.io, subject "We Received Your Lift Fi Inquiry", branded HTML (matte black header + logo, gold divider, white card, charcoal text, black footer) + plain-text fallback
+- Config env vars (all have correct defaults in server.js): LIFTFI_FROM_EMAIL, LIFTFI_PUBLIC_EMAIL, LIFTFI_ADMIN_EMAILS, LIFTFI_REPLY_TO_EMAIL
+- Spam protection: hidden honeypot field (`website`, silently accepted+dropped), per-IP rate limiting (5 per 10 min), server-side validation/sanitization (HTML-escape, newline stripping for header injection)
+- Confirmation email failure does NOT fail the request (lead already captured); internal notification failure returns 502
+- Kevin's email (kevin@aivarasolutions.com) is INTERNAL ONLY — never show publicly. All public references use admin@liftfi.io
+- Domain liftfi.io must remain verified in Resend for sending from admin@liftfi.io
 
 ## Recent Changes
+- 2026-07-03: **Resend email workflow** — Added Node.js Express server (server.js) replacing python http.server: serves static site + POST /api/contact. Sends internal admin notification (admin@liftfi.io + kevin@aivarasolutions.com, reply-to lead) and branded customer confirmation (from Lift Fi <admin@liftfi.io>, reply-to admin@liftfi.io) via Resend Replit connector. Honeypot + rate limiting + server-side validation. Form messages updated to spec copy; all public emails normalized to admin@liftfi.io. Workflow + deployment run command now "node server.js". End-to-end send tested successfully.
 - 2026-07-03: **Official brand rollout** — Saved full Lift Fi brand package to brand/liftfi/ (logos, SVG master, mockups, brand guide MD+PDF). Applied official identity site-wide: horizontal lockup in navbar+footer, stacked logo in hero, full favicon set from crest icon (ico/16/32/apple-touch/android 192+512 + site.webmanifest), new deck-cover-style og-image.jpg with tagline. Updated CSS tokens to official colors (#0A0A0A/#2B2B2B/#C9A24B/#D6B87A) with --liftfi-* variables; replaced all old gold hexes; removed text-based LF brand-mark and old logo.png/inline SVG favicon. New SEO title "Lift Fi | Lift Financial Holdings LLC" + OG/Twitter copy per brand spec. capital-structuring.html updated to new palette + favicons.
 - 2026-07-03: **V2 polish** — Deleted command-center.html entirely (with all cc-* CSS); added SEO/OG/Twitter meta + generated og-image.jpg (1200x630) and logo.png apple-touch-icon (Pillow-generated, matte black + gold LF); raised --text-muted to #A0A0A8 for WCAG contrast; new Investment & Operating Thesis section (4 cards); Strategic Focus rebuilt with 6 deal criteria + evaluation paragraph + compliance note + "Request Data Room Access" CTA (pre-selects Strategic Partner); portfolio titles linked (richaf.global, ipm.services; others "Site coming soon" placeholders) with LF watermark; org chart tier-type tags (Active LLCs / Brand Assets-DBAs / Operating Vertical / Target Structure); alternating desktop roadmap timeline; founder photo placeholder + focus tags + copy update (property operations). Contact form is Formspree-ready via data-endpoint (awaiting real form ID; honest mailto fallback until then).
 - 2026-07-03: **Investor-ready redesign (v2)** — Champagne/metallic gold palette, text-based LF brand mark, leadership section, hierarchical org chart with gold connecting lines, portfolio badges (Active LLC / Brand-DBA / In Development / Ownership Interest), rewritten 4-phase roadmap (no internal to-do language), strategic focus section, backend-ready contact form with validation and mailto fallback, robust visible-by-default scroll animations with prefers-reduced-motion support, Command Center removed from all public navigation/footer.
