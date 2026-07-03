@@ -1,0 +1,186 @@
+Update the entire Lift Financial Holdings LLC website to reflect its role as the parent company and financial command center for our business ecosystem.
+
+The website should feel professional, investor-ready, luxury, modern, and strategic. Use a clean black, white, and gold brand style. The tone should be confident, serious, and focused on growth, ownership, funding, business infrastructure, and long-term wealth building.
+
+Main goal:
+Position Lift Financial Holdings LLC as the parent/holding company for our business ecosystem. The site should clearly explain what we have built, what we are currently building, and where we are going.
+
+Create or update the website with the following sections:
+
+1. Hero Section
+
+Headline:
+Lift Financial Holdings LLC
+
+Subheadline:
+A private holding company building, organizing, and scaling a diversified ecosystem of businesses across technology, logistics, real estate, media, travel, hospitality, and strategic investments.
+
+CTA buttons:
+
+* View Our Portfolio
+* Explore Our Growth Strategy
+
+2. About Section
+
+Explain that Lift Financial Holdings LLC serves as the parent company, financial command center, and long-term growth vehicle for the business ecosystem founded by Kevin Jackson.
+
+Key message:
+Lift exists to organize ownership, centralize capital strategy, protect assets, support operating companies, and prepare the group for funding, partnerships, acquisitions, and scalable growth.
+
+3. Business Architecture Section
+
+Show a clear visual hierarchy:
+
+Kevin Jackson
+↓
+Lift Financial Holdings LLC
+↓
+Aivara Solutions LLC
+New Opportunity Entertainment LLC
+RichAF Global
+International Property Management
+FreightSync TMS LLC ownership interest
+Future entities, investments, real estate, and acquisitions
+
+Important note:
+For companies with partners, Lift Financial Holdings may hold Kevin Jackson’s ownership interest rather than 100% ownership.
+
+4. Portfolio Companies Section
+
+Create cards for each company/brand:
+
+Aivara Solutions LLC
+Description:
+Technology, software, automation, AI systems, portals, business infrastructure, and digital operations.
+
+FreightSync TMS LLC
+Description:
+Transportation management, dispatch systems, fleet operations, owner reporting, logistics technology, and carrier support.
+
+New Opportunity Entertainment LLC
+Description:
+Media, entertainment, music, content, travel-related branding, and creator-driven business opportunities.
+
+RichAF Global
+Description:
+Travel brand, digital guides, experiences, lifestyle media, creator partnerships, and future membership products.
+
+International Property Management
+Description:
+Short-term rental management, property services, owner relations, guest operations, hospitality systems, and real estate-related services.
+
+Future Ventures
+Description:
+Real estate entities, investment vehicles, software products, acquisition opportunities, and strategic partnerships.
+
+5. Financial Architecture Section
+
+Explain that each operating company maintains its own bank accounts, bookkeeping, contracts, revenue, expenses, and liabilities.
+
+Lift Financial Holdings manages:
+
+* Parent-company ownership
+* Treasury strategy
+* Capital allocation
+* Investment planning
+* Acquisition strategy
+* Reserve accounts
+* Investor readiness
+* Governance
+* Strategic growth
+
+6. Treasury & Capital Strategy Section
+
+Create a section showing how Lift organizes capital:
+
+* Operating reserve
+* Tax reserve
+* Legal/compliance reserve
+* Investment reserve
+* Acquisition reserve
+* Real estate reserve
+* Emergency reserve
+* Growth and marketing reserve
+
+Message:
+Every dollar should have a purpose. Lift Financial Holdings is designed to help capital move intentionally instead of randomly.
+
+7. Growth Roadmap Section
+
+Create a timeline with these phases:
+
+Phase 1: Organize
+Confirm all LLCs and DBAs, gather documents, clean up bookkeeping, and create current and target ownership charts.
+
+Phase 2: Activate Lift
+Open banking, create bookkeeping, build financial dashboard, create company email/domain, and draft internal agreements.
+
+Phase 3: Restructure
+Review with CPA and attorney, transfer ownership interests where appropriate, update operating agreements, and decide whether IPM should become a standalone LLC.
+
+Phase 4: Build for Funding
+Create investor materials, pitch deck, financial reports, partner overview, acquisition strategy, and portfolio dashboard.
+
+Phase 5: Scale
+Acquire assets, launch new ventures, raise capital when appropriate, expand real estate and technology operations, and grow the business ecosystem.
+
+8. Investor & Partner Readiness Section
+
+Explain that Lift is being structured to become easier to understand, fund, partner with, and scale.
+
+Include bullet points:
+
+* Clear ownership structure
+* Clean financial reporting
+* Organized legal documents
+* Defined partner roles
+* Operating company separation
+* Capital allocation strategy
+* Growth roadmap
+* Acquisition strategy
+* Investor-ready presentation
+
+9. Vision Section
+
+Headline:
+Building a Structured Business Ecosystem for Long-Term Growth
+
+Text:
+Lift Financial Holdings LLC is being developed as a diversified private holding company focused on technology, logistics, real estate, media, travel, hospitality, and strategic investments. The long-term goal is to build a scalable ecosystem of companies that generate cash flow, protect assets, attract partners, and create long-term wealth.
+
+10. Contact Section
+
+Create a professional contact section for potential partners, investors, advisors, and strategic opportunities.
+
+CTA:
+For partnership, investment, acquisition, or advisory conversations, contact Lift Financial Holdings LLC.
+
+Design requirements:
+
+* Luxury black, white, and gold styling
+* Clean typography
+* Investor-ready layout
+* Professional corporate feel
+* Mobile responsive
+* Clear portfolio cards
+* Visual ownership chart
+* Growth roadmap timeline
+* No clutter
+* No exaggerated promises
+* Keep the language professional and strategic
+
+Important:
+Do not make legal or financial claims that imply guarantees. Use professional language like “designed to,” “structured to,” “focused on,” and “intended to.”
+
+Also create a simple internal/admin-style page or section called “Command Center” that summarizes:
+
+* Current structure
+* Target structure
+* Active companies
+* DBAs
+* Immediate next steps
+* Documents needed
+* Advisor review needed
+* Funding readiness checklist
+
+The site should help us stay organized internally while also presenting Lift Financial Holdings as a serious parent company for future growth, partners, funding, and acquisitions.
