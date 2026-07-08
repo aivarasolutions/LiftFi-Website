@@ -1,0 +1,992 @@
+/* ==========================================================================
+   Lift Fi — Investor Presentation
+   Screen: full-viewport slide sections.
+   Print: 16:9 landscape pages, one slide per page, print-ready for PDF.
+   ========================================================================== */
+
+:root {
+    --pres-black: #0A0A0A;
+    --pres-charcoal: #2B2B2B;
+    --pres-white: #FFFFFF;
+    --pres-gold: #C9A24B;
+    --pres-champagne: #D6B87A;
+    --pres-muted: #A0A0A8;
+    --pres-card: #141414;
+    --pres-border: rgba(201, 162, 75, 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body.presentation-body {
+    background: var(--pres-black);
+    color: var(--pres-white);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Top utility bar (screen only) ---------- */
+.pres-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201, 162, 75, 0.18);
+}
+
+.pres-topbar-logo img {
+    height: 34px;
+    width: auto;
+    display: block;
+}
+
+.pres-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.pres-topbar a.pres-link {
+    color: var(--pres-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    transition: color 0.25s ease;
+}
+
+.pres-topbar a.pres-link:hover { color: var(--pres-champagne); }
+
+.pres-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--pres-gold), var(--pres-champagne));
+    color: var(--pres-black);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 3px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pres-download-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(201, 162, 75, 0.35);
+}
+
+/* ---------- Slides ---------- */
+.slide {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 110px 8vw 90px;
+    border-bottom: 1px solid rgba(201, 162, 75, 0.12);
+    overflow: hidden;
+}
+
+.slide-inner {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.slide-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--pres-gold);
+    margin-bottom: 18px;
+}
+
+.slide-eyebrow::after {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 1px;
+    background: var(--pres-gold);
+    margin-top: 14px;
+}
+
+.slide h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 4.2vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 26px;
+    color: var(--pres-white);
+}
+
+.slide-lead {
+    font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+    font-weight: 300;
+    color: #D5D5D9;
+    max-width: 820px;
+    line-height: 1.8;
+}
+
+.slide-lead + .slide-lead { margin-top: 18px; }
+
+.slide-lead strong { font-weight: 500; color: var(--pres-champagne); }
+
+.slide-number {
+    position: absolute;
+    bottom: 34px;
+    right: 8vw;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.22em;
+    color: rgba(201, 162, 75, 0.55);
+    z-index: 3;
+}
+
+.slide-footer-mark {
+    position: absolute;
+    bottom: 34px;
+    left: 8vw;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(160, 160, 168, 0.6);
+    z-index: 3;
+}
+
+.slide-footer-mark img { height: 16px; width: auto; opacity: 0.7; }
+
+/* ---------- Cover ---------- */
+.slide-cover {
+    text-align: center;
+    background:
+        radial-gradient(ellipse 65% 45% at 50% 38%, rgba(201, 162, 75, 0.09), transparent 70%),
+        var(--pres-black);
+}
+
+.cover-logo {
+    width: min(300px, 55vw);
+    height: auto;
+    margin: 0 auto 44px;
+    display: block;
+}
+
+.cover-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.14;
+    margin-bottom: 24px;
+}
+
+.cover-tagline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.15rem, 2.2vw, 1.65rem);
+    font-style: italic;
+    color: var(--pres-champagne);
+    margin-bottom: 26px;
+}
+
+.cover-sub {
+    font-size: clamp(0.95rem, 1.5vw, 1.12rem);
+    color: var(--pres-muted);
+    max-width: 640px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+}
+
+.cover-rule {
+    width: 72px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--pres-gold), transparent);
+    margin: 0 auto 40px;
+}
+
+.cover-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(201, 162, 75, 0.8);
+}
+
+/* Animated gold architectural line art */
+.cover-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.cover-lines path,
+.cover-lines line,
+.cover-lines rect {
+    stroke: var(--pres-gold);
+    fill: none;
+    stroke-width: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .cover-lines .draw {
+        stroke-dasharray: 1200;
+        stroke-dashoffset: 1200;
+        animation: pres-draw 3.2s ease-out forwards;
+    }
+    .cover-lines .draw.d2 { animation-delay: 0.5s; }
+    .cover-lines .draw.d3 { animation-delay: 1s; }
+}
+
+@keyframes pres-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+/* ---------- Generic content patterns ---------- */
+.pres-grid {
+    display: grid;
+    gap: 22px;
+    margin-top: 44px;
+}
+
+.pres-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.pres-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+.pres-card {
+    background: var(--pres-card);
+    border: 1px solid rgba(201, 162, 75, 0.16);
+    border-top: 2px solid var(--pres-gold);
+    padding: 30px 28px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.pres-card:hover { border-color: rgba(201, 162, 75, 0.45); transform: translateY(-3px); }
+
+.pres-card .pc-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--pres-border);
+    border-radius: 50%;
+    color: var(--pres-gold);
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+}
+
+.pres-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.14rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--pres-white);
+}
+
+.pres-card p {
+    font-size: 0.9rem;
+    color: var(--pres-muted);
+    line-height: 1.7;
+}
+
+/* ---------- Slide 3: Portfolio ---------- */
+.pf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 44px;
+}
+
+.pf-card {
+    background: var(--pres-card);
+    border: 1px solid rgba(201, 162, 75, 0.16);
+    padding: 30px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.pf-card:hover { border-color: rgba(201, 162, 75, 0.45); transform: translateY(-3px); }
+
+.pf-logo {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.pf-logo img { max-height: 52px; max-width: 170px; width: auto; height: auto; }
+
+.pf-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.pf-sector {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pres-gold);
+    margin-bottom: 18px;
+}
+
+.pf-cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pres-black);
+    background: linear-gradient(135deg, var(--pres-gold), var(--pres-champagne));
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 3px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.pf-cta:hover { transform: translateY(-1px); box-shadow: 0 5px 18px rgba(201, 162, 75, 0.3); }
+
+.pf-tag {
+    margin-top: auto;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pres-champagne);
+    border: 1px solid var(--pres-border);
+    padding: 8px 14px;
+    border-radius: 3px;
+}
+
+/* ---------- Slide 4: Corporate structure ---------- */
+.struct-chart {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.struct-node {
+    background: var(--pres-card);
+    border: 1px solid var(--pres-border);
+    padding: 16px 34px;
+    text-align: center;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--pres-white);
+    min-width: 280px;
+}
+
+.struct-node.root {
+    border: 1px solid var(--pres-gold);
+    border-top: 3px solid var(--pres-gold);
+    background: linear-gradient(180deg, rgba(201, 162, 75, 0.1), var(--pres-card));
+}
+
+.struct-node.final {
+    border: 1px solid var(--pres-gold);
+    background: linear-gradient(135deg, var(--pres-gold), var(--pres-champagne));
+    color: var(--pres-black);
+}
+
+.struct-node small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pres-gold);
+    margin-top: 4px;
+}
+
+.struct-node.final small { color: rgba(10, 10, 10, 0.65); }
+
+.struct-connector {
+    width: 1px;
+    height: 26px;
+    background: linear-gradient(180deg, var(--pres-gold), rgba(201, 162, 75, 0.35));
+    position: relative;
+}
+
+.struct-connector::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--pres-gold);
+}
+
+.struct-shared {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 0;
+}
+
+.struct-shared .struct-node {
+    min-width: 0;
+    font-size: 0.9rem;
+    padding: 14px 18px;
+}
+
+/* ---------- Slide 5: Business model ---------- */
+.bm-flow {
+    margin-top: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.bm-item {
+    background: var(--pres-card);
+    border: 1px solid rgba(201, 162, 75, 0.16);
+    padding: 20px 22px;
+    text-align: center;
+    flex: 1 1 200px;
+    max-width: 260px;
+}
+
+.bm-item i { color: var(--pres-gold); font-size: 1.2rem; margin-bottom: 12px; display: block; }
+
+.bm-item h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.bm-item p { font-size: 0.82rem; color: var(--pres-muted); line-height: 1.6; }
+
+.bm-equals {
+    width: 100%;
+    text-align: center;
+    margin-top: 26px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(201, 162, 75, 0.2);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--pres-champagne);
+    font-style: italic;
+}
+
+/* ---------- Lists (advantages, growth, why) ---------- */
+.pres-list {
+    list-style: none;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 40px;
+}
+
+.pres-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(201, 162, 75, 0.14);
+    font-size: 1rem;
+    color: #D5D5D9;
+}
+
+.pres-list li i {
+    color: var(--pres-gold);
+    font-size: 0.95rem;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.pres-list li strong {
+    display: block;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--pres-white);
+    margin-bottom: 4px;
+}
+
+.pres-list li span { font-size: 0.88rem; color: var(--pres-muted); line-height: 1.65; }
+
+/* ---------- Slide 11: Roadmap ---------- */
+.rm-track {
+    margin-top: 54px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+}
+
+.rm-track::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 4%;
+    right: 4%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--pres-gold), rgba(201, 162, 75, 0.25));
+}
+
+.rm-step { position: relative; text-align: center; padding-top: 34px; }
+
+.rm-step::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid var(--pres-gold);
+    background: var(--pres-black);
+}
+
+.rm-step.current::before { background: var(--pres-gold); box-shadow: 0 0 14px rgba(201, 162, 75, 0.6); }
+
+.rm-step h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.rm-step p { font-size: 0.78rem; color: var(--pres-muted); line-height: 1.6; }
+
+.rm-step .rm-phase {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--pres-gold);
+    margin-bottom: 6px;
+}
+
+/* ---------- Final slide ---------- */
+.slide-final { text-align: center; }
+
+.final-logo { width: min(240px, 50vw); height: auto; margin: 0 auto 40px; display: block; }
+
+.final-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.final-tagline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--pres-champagne);
+    margin-bottom: 44px;
+}
+
+.final-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 46px;
+    margin-bottom: 52px;
+}
+
+.final-contacts a, .final-contacts span {
+    color: var(--pres-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.25s ease;
+}
+
+.final-contacts a:hover { color: var(--pres-champagne); }
+.final-contacts i { color: var(--pres-gold); }
+
+.final-dataroom {
+    margin-bottom: 56px;
+}
+
+.final-dataroom a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--pres-gold);
+    color: var(--pres-champagne);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 13px 26px;
+    border-radius: 3px;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.final-dataroom a:hover { background: rgba(201, 162, 75, 0.12); }
+
+.pres-disclaimer {
+    max-width: 860px;
+    margin: 0 auto;
+    padding-top: 34px;
+    border-top: 1px solid rgba(201, 162, 75, 0.2);
+    font-size: 0.74rem;
+    line-height: 1.75;
+    color: rgba(160, 160, 168, 0.75);
+    text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .pres-grid.cols-3, .pf-grid { grid-template-columns: repeat(2, 1fr); }
+    .struct-shared { grid-template-columns: repeat(2, 1fr); }
+    .rm-track { grid-template-columns: repeat(3, 1fr); gap: 34px 14px; }
+    .rm-track::before { display: none; }
+}
+
+@media (max-width: 640px) {
+    .slide { padding: 96px 6vw 84px; }
+    .pres-grid.cols-2, .pres-grid.cols-3, .pf-grid, .pres-list { grid-template-columns: 1fr; }
+    .struct-shared { grid-template-columns: 1fr; }
+    .rm-track { grid-template-columns: 1fr 1fr; }
+    .pres-topbar { padding: 10px 16px; }
+    .pres-topbar a.pres-link span { display: none; }
+    .slide-number, .slide-footer-mark { bottom: 20px; }
+}
+
+/* ==========================================================================
+   PRINT — one slide per 16:9 landscape page, print-ready PDF
+   ========================================================================== */
+@page {
+    size: 13.333in 7.5in;
+    margin: 0;
+}
+
+@media print {
+    html { scroll-behavior: auto; }
+
+    body.presentation-body {
+        background: var(--pres-black) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .pres-topbar { display: none !important; }
+
+    .slide {
+        width: 13.333in;
+        height: 7.5in;
+        min-height: 0;
+        page-break-after: always;
+        break-after: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        border-bottom: none;
+        padding: 0.65in 0.85in;
+        justify-content: center;
+    }
+
+    .slide:last-child { page-break-after: avoid; break-after: avoid; }
+
+    .slide-inner { max-width: none; }
+
+    .slide h2 { font-size: 34pt; margin-bottom: 16pt; }
+    .slide-eyebrow { font-size: 8pt; margin-bottom: 10pt; }
+    .slide-lead { font-size: 12.5pt; max-width: 8.6in; line-height: 1.65; }
+
+    .slide-number { bottom: 0.42in; right: 0.85in; font-size: 8pt; }
+    .slide-footer-mark { bottom: 0.42in; left: 0.85in; font-size: 6.5pt; }
+
+    .cover-logo { width: 2.9in; margin-bottom: 0.35in; }
+    .cover-title { font-size: 36pt; margin-bottom: 0.18in; }
+    .cover-tagline { font-size: 16pt; margin-bottom: 0.18in; }
+    .cover-sub { font-size: 11pt; margin-bottom: 0.28in; }
+    .cover-rule { margin-bottom: 0.28in; }
+
+    .cover-lines .draw { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; animation: none !important; }
+
+    .pres-grid { margin-top: 0.32in; gap: 0.16in; }
+    .pres-card { padding: 0.22in; }
+    .pres-card .pc-icon { width: 0.36in; height: 0.36in; font-size: 10pt; margin-bottom: 0.1in; }
+    .pres-card h3 { font-size: 12pt; }
+    .pres-card p { font-size: 9pt; }
+
+    .pf-grid { margin-top: 0.3in; gap: 0.14in; }
+    .pf-card { padding: 0.2in; }
+    .pf-logo { height: 0.42in; margin-bottom: 0.12in; }
+    .pf-logo img { max-height: 0.42in; max-width: 1.55in; }
+    .pf-card h3 { font-size: 11pt; }
+    .pf-sector { font-size: 6.5pt; margin-bottom: 0.12in; }
+    .pf-cta, .pf-tag { font-size: 7pt; padding: 0.06in 0.12in; }
+
+    .struct-chart { margin-top: 0.28in; }
+    .struct-node { padding: 0.1in 0.3in; font-size: 11pt; min-width: 2.6in; }
+    .struct-node small { font-size: 6pt; }
+    .struct-connector { height: 0.16in; }
+    .struct-shared { gap: 0.12in; }
+    .struct-shared .struct-node { font-size: 9pt; padding: 0.09in 0.14in; min-width: 0; }
+
+    .bm-flow { margin-top: 0.3in; gap: 0.12in; }
+    .bm-item { padding: 0.16in; flex-basis: 2in; }
+    .bm-item i { font-size: 11pt; margin-bottom: 0.08in; }
+    .bm-item h3 { font-size: 10.5pt; }
+    .bm-item p { font-size: 8pt; }
+    .bm-equals { margin-top: 0.18in; padding-top: 0.18in; font-size: 12pt; }
+
+    .pres-list { margin-top: 0.28in; gap: 0.1in 0.4in; }
+    .pres-list li { padding: 0.11in 0; font-size: 10pt; }
+    .pres-list li strong { font-size: 11pt; }
+    .pres-list li span { font-size: 8.5pt; }
+
+    .rm-track { margin-top: 0.4in; }
+    .rm-step h3 { font-size: 10.5pt; }
+    .rm-step p { font-size: 7.5pt; }
+
+    .final-logo { width: 2.3in; margin-bottom: 0.3in; }
+    .final-title { font-size: 34pt; }
+    .final-tagline { font-size: 14pt; margin-bottom: 0.3in; }
+    .final-contacts { margin-bottom: 0.32in; }
+    .final-contacts a, .final-contacts span { font-size: 10pt; }
+    .final-dataroom { margin-bottom: 0.32in; }
+    .final-dataroom a { font-size: 8pt; padding: 0.1in 0.2in; }
+    .pres-disclaimer { font-size: 7pt; padding-top: 0.2in; }
+
+    .pres-card:hover, .pf-card:hover { transform: none; }
+}
+
+/* ==========================================================================
+   Investor Data Room (data-room.html)
+   ========================================================================== */
+.dr-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 130px 6vw 90px;
+    background:
+        radial-gradient(ellipse 60% 40% at 50% 30%, rgba(201, 162, 75, 0.07), transparent 70%),
+        var(--pres-black);
+}
+
+.dr-gate {
+    width: 100%;
+    max-width: 460px;
+    background: var(--pres-card);
+    border: 1px solid var(--pres-border);
+    border-top: 3px solid var(--pres-gold);
+    padding: 48px 42px;
+    text-align: center;
+}
+
+.dr-gate-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--pres-gold);
+    border-radius: 50%;
+    color: var(--pres-gold);
+    font-size: 1.3rem;
+}
+
+.dr-gate h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--pres-white);
+}
+
+.dr-gate p {
+    font-size: 0.88rem;
+    color: var(--pres-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.dr-gate form { display: flex; flex-direction: column; gap: 14px; }
+
+.dr-gate input[type="password"] {
+    background: var(--pres-black);
+    border: 1px solid rgba(201, 162, 75, 0.3);
+    color: var(--pres-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    padding: 13px 16px;
+    border-radius: 3px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.25s ease;
+}
+
+.dr-gate input[type="password"]:focus { border-color: var(--pres-gold); }
+
+.dr-gate button {
+    background: linear-gradient(135deg, var(--pres-gold), var(--pres-champagne));
+    color: var(--pres-black);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dr-gate button:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201, 162, 75, 0.3); }
+.dr-gate button:disabled { opacity: 0.6; cursor: wait; transform: none; box-shadow: none; }
+
+.dr-error {
+    color: #E08585;
+    font-size: 0.82rem;
+    min-height: 1.2em;
+    margin-top: 2px;
+}
+
+.dr-request {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(201, 162, 75, 0.15);
+    font-size: 0.8rem !important;
+    margin-bottom: 0 !important;
+}
+
+.dr-request a { color: var(--pres-champagne); text-decoration: none; }
+.dr-request a:hover { text-decoration: underline; }
+
+/* Unlocked content */
+.dr-content { width: 100%; max-width: 1050px; display: none; }
+.dr-content.open { display: block; }
+
+.dr-content-header { text-align: center; margin-bottom: 46px; }
+
+.dr-content-header .slide-eyebrow::after { margin-left: auto; margin-right: auto; }
+.dr-content-header .slide-eyebrow { margin-bottom: 14px; }
+
+.dr-content-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.dr-content-header p {
+    font-size: 0.95rem;
+    color: var(--pres-muted);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.75;
+}
+
+.dr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.dr-section {
+    background: var(--pres-card);
+    border: 1px solid rgba(201, 162, 75, 0.16);
+    border-top: 2px solid var(--pres-gold);
+    padding: 30px 28px;
+}
+
+.dr-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    color: var(--pres-white);
+}
+
+.dr-section h2 i { color: var(--pres-gold); font-size: 1rem; }
+
+.dr-section ul { list-style: none; }
+
+.dr-section li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(201, 162, 75, 0.1);
+    font-size: 0.88rem;
+    color: #C9C9CE;
+}
+
+.dr-section li:last-child { border-bottom: none; }
+
+.dr-section li i { color: rgba(201, 162, 75, 0.65); font-size: 0.75rem; margin-top: 5px; }
+
+.dr-note {
+    margin-top: 34px;
+    padding: 22px 26px;
+    border: 1px solid rgba(201, 162, 75, 0.2);
+    background: rgba(201, 162, 75, 0.05);
+    font-size: 0.82rem;
+    color: var(--pres-muted);
+    line-height: 1.75;
+    text-align: center;
+}
+
+.dr-lock-out {
+    margin-top: 26px;
+    text-align: center;
+}
+
+.dr-lock-out button {
+    background: none;
+    border: 1px solid rgba(201, 162, 75, 0.35);
+    color: var(--pres-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.dr-lock-out button:hover { color: var(--pres-champagne); border-color: var(--pres-gold); }
+
+@media (max-width: 760px) {
+    .dr-grid { grid-template-columns: 1fr; }
+    .dr-gate { padding: 38px 26px; }
+}

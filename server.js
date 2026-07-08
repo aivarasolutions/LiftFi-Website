@@ -4,11 +4,17 @@
 // connectors SDK; no API key ever reaches the frontend.)
 
 const path = require("path");
+const crypto = require("crypto");
 const express = require("express");
 const { ReplitConnectors } = require("@replit/connectors-sdk");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Behind Replit's proxy (one trusted hop) — makes req.ip use the real client
+// address from the proxy-set header instead of trusting arbitrary
+// client-supplied X-Forwarded-For values.
+app.set("trust proxy", 1);
 
 // ----- Configuration (env-overridable, sensible brand defaults) -----
 const FROM_EMAIL = process.env.LIFTFI_FROM_EMAIL || "Lift Fi <admin@liftfi.io>";
@@ -251,6 +257,131 @@ function confirmationEmail(fields) {
     return { text, html };
 }
 
+// ----- Investor Data Room (access-code gated) -----
+const DATAROOM_ACCESS_CODE = process.env.DATAROOM_ACCESS_CODE || "";
+const DATAROOM_TOKEN_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours
+const dataroomTokens = new Map(); // token -> expiry timestamp
+
+// Separate, stricter rate limit for login attempts
+const DR_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const DR_LIMIT_MAX = 5;
+const drBuckets = new Map();
+
+function isDataroomRateLimited(ip) {
+    const now = Date.now();
+    const bucket = (drBuckets.get(ip) || []).filter((t) => now - t < DR_LIMIT_WINDOW_MS);
+    if (bucket.length >= DR_LIMIT_MAX) {
+        drBuckets.set(ip, bucket);
+        return true;
+    }
+    bucket.push(now);
+    drBuckets.set(ip, bucket);
+    return false;
+}
+
+setInterval(() => {
+    const now = Date.now();
+    for (const [ip, times] of drBuckets) {
+        const fresh = times.filter((t) => now - t < DR_LIMIT_WINDOW_MS);
+        if (fresh.length === 0) drBuckets.delete(ip);
+        else drBuckets.set(ip, fresh);
+    }
+    for (const [token, expiry] of dataroomTokens) {
+        if (expiry < now) dataroomTokens.delete(token);
+    }
+}, DR_LIMIT_WINDOW_MS).unref();
+
+function timingSafeEqualStr(a, b) {
+    const ha = crypto.createHash("sha256").update(String(a)).digest();
+    const hb = crypto.createHash("sha256").update(String(b)).digest();
+    return crypto.timingSafeEqual(ha, hb);
+}
+
+function getValidDataroomToken(req) {
+    const auth = req.headers.authorization || "";
+    const token = auth.startsWith("Bearer ") ? auth.slice(7).trim() : "";
+    if (!token) return null;
+    const expiry = dataroomTokens.get(token);
+    if (!expiry || expiry < Date.now()) {
+        if (expiry) dataroomTokens.delete(token);
+        return null;
+    }
+    return token;
+}
+
+app.post("/api/dataroom/login", (req, res) => {
+    if (!DATAROOM_ACCESS_CODE) {
+        return res.status(503).json({ ok: false, error: "The data room is not yet available. Please contact admin@liftfi.io." });
+    }
+    const ip = req.ip || req.socket.remoteAddress || "unknown";
+    if (isDataroomRateLimited(ip)) {
+        return res.status(429).json({ ok: false, error: "Too many attempts. Please try again later." });
+    }
+    const code = stripNewlines(req.body?.code).slice(0, 200);
+    if (!code || !timingSafeEqualStr(code, DATAROOM_ACCESS_CODE)) {
+        return res.status(401).json({ ok: false, error: "Invalid access code." });
+    }
+    const token = crypto.randomBytes(32).toString("hex");
+    dataroomTokens.set(token, Date.now() + DATAROOM_TOKEN_TTL_MS);
+    return res.json({ ok: true, token });
+});
+
+// Data room contents are only returned to authenticated sessions.
+const DATAROOM_SECTIONS = [
+    {
+        title: "Corporate & Organizational",
+        icon: "fa-building-columns",
+        items: [
+            "Certificate of Formation — Lift Financial Holdings LLC",
+            "Operating Agreement (holding company)",
+            "Organizational chart & entity structure",
+            "Subsidiary formation documents",
+        ],
+    },
+    {
+        title: "Financial Information",
+        icon: "fa-chart-pie",
+        items: [
+            "Historical financial statements by entity",
+            "Consolidated financial overview",
+            "Banking & treasury structure",
+            "Capitalization summary",
+        ],
+    },
+    {
+        title: "Operating Companies",
+        icon: "fa-briefcase",
+        items: [
+            "Company profiles & operating metrics",
+            "Technology & platform overviews",
+            "Key contracts & customer relationships",
+            "Brand & intellectual property summary",
+        ],
+    },
+    {
+        title: "Strategy & Governance",
+        icon: "fa-scale-balanced",
+        items: [
+            "Long-term strategic plan",
+            "Capital allocation framework",
+            "Risk & compliance overview",
+            "Leadership & management background",
+        ],
+    },
+];
+
+app.get("/api/dataroom/content", (req, res) => {
+    const token = getValidDataroomToken(req);
+    if (!token) {
+        return res.status(401).json({ ok: false, error: "Session expired. Please enter your access code again." });
+    }
+    return res.json({
+        ok: true,
+        sections: DATAROOM_SECTIONS,
+        note: "Materials in this data room are shared during confidential due diligence. Documents are provided individually to qualified parties following an initial conversation. To request specific materials, contact admin@liftfi.io.",
+    });
+});
+
 // ----- Contact endpoint -----
 app.post("/api/contact", async (req, res) => {
     try {
@@ -261,7 +392,7 @@ app.post("/api/contact", async (req, res) => {
             return res.json({ ok: true });
         }
 
-        const ip = req.headers["x-forwarded-for"]?.split(",")[0]?.trim() || req.socket.remoteAddress || "unknown";
+        const ip = req.ip || req.socket.remoteAddress || "unknown";
         if (isRateLimited(ip)) {
             return res.status(429).json({ ok: false, error: "Too many submissions. Please try again later." });
         }

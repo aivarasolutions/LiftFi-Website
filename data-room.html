@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Data Room | Lift Financial Holdings LLC</title>
+    <meta name="description" content="Private investor data room for Lift Financial Holdings LLC. Access is provided to qualified parties following an initial conversation.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.liftfi.io/data-room.html">
+
+    <!-- Favicons / App Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0A">
+    <link rel="stylesheet" href="presentation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="presentation-body">
+
+    <header class="pres-topbar">
+        <a class="pres-topbar-logo" href="index.html" aria-label="Lift Fi — Lift Financial Holdings home">
+            <img src="/brand/liftfi/liftfi_horizontal_web.png" alt="Lift Fi — Lift Financial Holdings LLC">
+        </a>
+        <div class="pres-topbar-actions">
+            <a class="pres-link" href="investor-presentation.html"><i class="fas fa-arrow-left"></i> <span>Investor Presentation</span></a>
+            <a class="pres-link" href="investor-relations.html"><span>Investor Relations</span></a>
+        </div>
+    </header>
+
+    <main class="dr-main">
+
+        <!-- Locked state -->
+        <div class="dr-gate" id="drGate">
+            <div class="dr-gate-icon"><i class="fas fa-lock"></i></div>
+            <h1>Investor Data Room</h1>
+            <p>This area is reserved for qualified parties engaged in confidential discussions with Lift Financial Holdings LLC. Please enter the access code provided to you.</p>
+            <form id="drForm" autocomplete="off">
+                <input type="password" id="drCode" name="code" placeholder="Access Code" aria-label="Access code" required maxlength="200">
+                <p class="dr-error" id="drError" role="alert" aria-live="polite"></p>
+                <button type="submit" id="drSubmit">Enter Data Room</button>
+            </form>
+            <p class="dr-request">Don&rsquo;t have an access code? <a href="index.html?inquiry=Strategic%20Partner#contact">Request investor access</a> or email <a href="mailto:admin@liftfi.io">admin@liftfi.io</a>.</p>
+        </div>
+
+        <!-- Unlocked state -->
+        <div class="dr-content" id="drContent">
+            <div class="dr-content-header">
+                <p class="slide-eyebrow">Confidential</p>
+                <h1>Investor Data Room</h1>
+                <p id="drNote"></p>
+            </div>
+            <div class="dr-grid" id="drGrid"></div>
+            <div class="dr-note">The materials listed above are made available during confidential due diligence. Nothing in this data room constitutes an offer to sell or a solicitation of an offer to purchase securities.</div>
+            <div class="dr-lock-out">
+                <button type="button" id="drLock"><i class="fas fa-lock"></i> Lock Data Room</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        (function () {
+            var TOKEN_KEY = "liftfi_dataroom_token";
+            var gate = document.getElementById("drGate");
+            var content = document.getElementById("drContent");
+            var form = document.getElementById("drForm");
+            var codeInput = document.getElementById("drCode");
+            var errorEl = document.getElementById("drError");
+            var submitBtn = document.getElementById("drSubmit");
+            var grid = document.getElementById("drGrid");
+            var note = document.getElementById("drNote");
+            var lockBtn = document.getElementById("drLock");
+
+            function escapeHtml(s) {
+                return String(s == null ? "" : s)
+                    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+            }
+
+            function showGate() {
+                sessionStorage.removeItem(TOKEN_KEY);
+                content.classList.remove("open");
+                gate.style.display = "";
+                codeInput.value = "";
+            }
+
+            function render(data) {
+                note.textContent = data.note || "";
+                grid.innerHTML = data.sections.map(function (s) {
+                    return '<div class="dr-section">' +
+                        '<h2><i class="fas ' + escapeHtml(s.icon) + '"></i>' + escapeHtml(s.title) + "</h2>" +
+                        "<ul>" + s.items.map(function (it) {
+                            return '<li><i class="fas fa-file-lines"></i>' + escapeHtml(it) + "</li>";
+                        }).join("") + "</ul></div>";
+                }).join("");
+                gate.style.display = "none";
+                content.classList.add("open");
+            }
+
+            function loadContent(token) {
+                return fetch("/api/dataroom/content", {
+                    headers: { Authorization: "Bearer " + token }
+                }).then(function (res) {
+                    return res.json().then(function (data) {
+                        if (!res.ok || !data.ok) throw new Error(data.error || "Session expired.");
+                        render(data);
+                    });
+                });
+            }
+
+            // Resume an existing session if the token is still valid
+            var existing = sessionStorage.getItem(TOKEN_KEY);
+            if (existing) {
+                loadContent(existing).catch(showGate);
+            }
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                errorEl.textContent = "";
+                submitBtn.disabled = true;
+                fetch("/api/dataroom/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code: codeInput.value })
+                }).then(function (res) {
+                    return res.json().then(function (data) {
+                        if (!res.ok || !data.ok) throw new Error(data.error || "Invalid access code.");
+                        sessionStorage.setItem(TOKEN_KEY, data.token);
+                        return loadContent(data.token);
+                    });
+                }).catch(function (err) {
+                    errorEl.textContent = err.message || "Something went wrong. Please try again.";
+                }).finally(function () {
+                    submitBtn.disabled = false;
+                });
+            });
+
+            lockBtn.addEventListener("click", showGate);
+        })();
+    </script>
+
+</body>
+
+</html>

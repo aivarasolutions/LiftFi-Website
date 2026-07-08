@@ -1,2 +1,2 @@
-- [Resend connector requires Node SDK](resend-connector-node-only.md) — Python connectors SDK isn't on PyPI; use Node server + both addIntegration and proposeIntegration, keep static denylist current.
-- [Section QA via anchor screenshots](section-qa-screenshots.md) — screenshot /page?qa=N#section-id to QA below-the-fold sections; all sections have ids.
+- [Print-ready PDF from HTML](pdf-from-html.md) — committed PDFs go stale; regenerate via headless chromium whenever the source page changes.
+- [Rate limiting behind Replit proxy](proxy-rate-limiting.md) — use trust proxy + req.ip, never raw X-Forwarded-For, or per-IP limits are spoofable.

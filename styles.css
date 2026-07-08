@@ -2123,3 +2123,57 @@ section {
         grid-template-columns: 1fr;
     }
 }
+
+/* ---------- IR: Investor Presentation banner ---------- */
+.ir-presentation {
+    padding: 90px 0;
+    background: linear-gradient(180deg, var(--liftfi-black), #101010);
+    border-bottom: 1px solid rgba(201, 162, 75, 0.12);
+}
+
+.ir-pres-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    background: #141414;
+    border: 1px solid rgba(201, 162, 75, 0.2);
+    border-left: 3px solid var(--liftfi-gold);
+    padding: 52px 56px;
+}
+
+.ir-pres-banner-text { max-width: 560px; }
+
+.ir-pres-banner-text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    font-weight: 600;
+    color: var(--liftfi-white);
+    margin-bottom: 14px;
+    line-height: 1.25;
+}
+
+.ir-pres-banner-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+.ir-pres-banner-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.ir-pres-banner-actions .cta-primary,
+.ir-pres-banner-actions .cta-secondary {
+    text-align: center;
+    justify-content: center;
+}
+
+@media (max-width: 992px) {
+    .ir-pres-banner { flex-direction: column; align-items: flex-start; padding: 40px 32px; }
+    .ir-pres-banner-actions { width: 100%; }
+}
