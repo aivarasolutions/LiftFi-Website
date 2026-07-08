@@ -1634,3 +1634,492 @@ section {
         text-align: center;
     }
 }
+
+/* ============================
+   Investor Relations Page
+   ============================ */
+
+.nav-link.active {
+    color: var(--gold);
+}
+
+/* IR Hero */
+.ir-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.ir-hero-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ir-hero-lines svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.ir-hero .hero-container {
+    position: relative;
+    z-index: 1;
+}
+
+.ir-hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--gold-light);
+    margin: 6px 0 22px;
+}
+
+/* Who We Are */
+.ir-who {
+    background: var(--black-soft);
+}
+
+.ir-who-text {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ir-who-text p {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-bottom: 22px;
+}
+
+.ir-who-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* IR Portfolio */
+.ir-portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.portfolio-card.ir-card {
+    padding: 42px 36px;
+}
+
+.ir-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 6px 0 4px;
+}
+
+.ir-tags span {
+    border: 1px solid var(--border-dark);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 3px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    color: var(--text-light);
+}
+
+/* Business Model Flow */
+.ir-model {
+    background: var(--black-soft);
+}
+
+.flow-diagram {
+    max-width: 860px;
+    margin: 30px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flow-node {
+    background: var(--charcoal);
+    border: 1px solid var(--border-dark);
+    border-radius: 6px;
+    padding: 14px 26px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    text-align: center;
+    letter-spacing: 0.4px;
+}
+
+.flow-node.flow-top {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    border: none;
+    padding: 16px 38px;
+}
+
+.flow-node.flow-major {
+    border-color: var(--gold-dim);
+    color: var(--gold-light);
+    padding: 15px 34px;
+    font-size: 1.05rem;
+}
+
+.flow-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.flow-row .flow-node {
+    flex: 1 1 140px;
+    max-width: 190px;
+    font-size: 0.82rem;
+    padding: 12px 10px;
+    color: var(--text-light);
+}
+
+.flow-arrow {
+    color: var(--gold);
+    font-size: 1.3rem;
+    line-height: 1;
+    padding: 10px 0;
+    position: relative;
+}
+
+.flow-arrow::before,
+.flow-arrow::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 8px;
+    background: var(--gold-dim);
+}
+
+.flow-arrow::before {
+    top: 0;
+}
+
+.flow-arrow::after {
+    bottom: 0;
+}
+
+.flow-loop {
+    margin-top: 22px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+}
+
+.flow-loop i {
+    color: var(--gold);
+    margin-right: 6px;
+}
+
+/* Strategic Advantages */
+.ir-advantages {
+    background: var(--black);
+}
+
+.adv-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 22px;
+    margin-top: 40px;
+}
+
+.adv-card {
+    background: var(--charcoal);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--border-radius);
+    padding: 30px 22px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.adv-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.adv-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 18px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adv-icon i {
+    color: var(--gold);
+    font-size: 1.3rem;
+}
+
+.adv-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+
+.adv-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* IR Roadmap */
+.ir-roadmap {
+    background: var(--black-soft);
+}
+
+.ir-roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-top: 40px;
+}
+
+.ir-phase {
+    background: var(--charcoal);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--border-radius);
+    padding: 34px 30px;
+    transition: var(--transition);
+}
+
+.ir-phase:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.ir-phase.current {
+    border-color: var(--gold-dim);
+    box-shadow: 0 0 0 1px var(--gold-faint), var(--shadow);
+}
+
+.ir-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.ir-phase-header i {
+    font-size: 1.1rem;
+}
+
+.ir-phase-header.done i {
+    color: var(--gold);
+}
+
+.ir-phase-header.now i {
+    color: var(--gold-light);
+}
+
+.ir-phase-header.future i {
+    color: var(--text-muted);
+}
+
+.ir-phase ul {
+    list-style: none;
+}
+
+.ir-phase li {
+    position: relative;
+    padding: 8px 0 8px 24px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.ir-phase li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+}
+
+/* Investment Philosophy */
+.ir-philosophy {
+    background: var(--black);
+}
+
+.ir-philosophy-text {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ir-philosophy-text p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 22px;
+}
+
+.ir-philosophy-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Investor Information */
+.ir-info {
+    background: var(--black-soft);
+}
+
+.ir-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+    max-width: 860px;
+    margin: 40px auto 0;
+}
+
+.ir-info-card {
+    background: var(--charcoal);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--border-radius);
+    padding: 36px 30px;
+    text-align: center;
+}
+
+.ir-info-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+}
+
+.ir-info-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.ir-capital {
+    max-width: 860px;
+    margin: 50px auto 0;
+    text-align: center;
+}
+
+.ir-capital h3 {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+}
+
+.ir-capital-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.ir-info-note {
+    max-width: 760px;
+    margin: 40px auto 0;
+    text-align: center;
+}
+
+/* Investor Data Room */
+.ir-dataroom {
+    background: var(--black);
+}
+
+.dataroom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.dataroom-item {
+    background: var(--charcoal);
+    border: 1px solid var(--border-dark);
+    border-radius: 6px;
+    padding: 16px 20px;
+    font-size: 0.92rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition);
+}
+
+.dataroom-item:hover {
+    border-color: var(--gold-dim);
+}
+
+.dataroom-item i {
+    color: var(--gold);
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.ir-dataroom .dataroom-cta {
+    margin-top: 46px;
+}
+
+/* IR Responsive */
+@media (max-width: 1080px) {
+    .adv-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .ir-portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ir-roadmap-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ir-capital-grid,
+    .dataroom-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .ir-portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .adv-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ir-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flow-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flow-row .flow-node {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .ir-hero-tagline {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .adv-grid,
+    .ir-capital-grid,
+    .dataroom-grid {
+        grid-template-columns: 1fr;
+    }
+}

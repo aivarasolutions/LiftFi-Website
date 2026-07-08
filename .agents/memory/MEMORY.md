@@ -1,1 +1,2 @@
 - [Resend connector requires Node SDK](resend-connector-node-only.md) — Python connectors SDK isn't on PyPI; use Node server + both addIntegration and proposeIntegration, keep static denylist current.
+- [Section QA via anchor screenshots](section-qa-screenshots.md) — screenshot /page?qa=N#section-id to QA below-the-fold sections; all sections have ids.

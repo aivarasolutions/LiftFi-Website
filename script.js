@@ -107,12 +107,23 @@ window.addEventListener('scroll', () => {
 
 // "Request Data Room Access" CTA: pre-select Strategic Partner, then scroll to contact
 (function initDataRoomCta() {
-    const cta = document.getElementById('dataroomCta');
     const inquirySelect = document.getElementById('cf-type');
-    if (!cta || !inquirySelect) return;
-    cta.addEventListener('click', () => {
-        inquirySelect.value = 'Strategic Partner';
-    });
+    if (!inquirySelect) return;
+
+    // Same-page CTA click (index.html)
+    const cta = document.getElementById('dataroomCta');
+    if (cta) {
+        cta.addEventListener('click', () => {
+            inquirySelect.value = 'Strategic Partner';
+        });
+    }
+
+    // Cross-page preselect via ?inquiry= query param (e.g. from investor-relations.html)
+    const inquiry = new URLSearchParams(window.location.search).get('inquiry');
+    if (inquiry) {
+        const hasOption = Array.from(inquirySelect.options).some(o => o.value === inquiry);
+        if (hasOption) inquirySelect.value = inquiry;
+    }
 })();
 
 // Contact Form Handling

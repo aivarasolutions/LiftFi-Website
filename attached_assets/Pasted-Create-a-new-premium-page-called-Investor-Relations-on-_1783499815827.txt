@@ -1,0 +1,317 @@
+Create a new premium page called Investor Relations on LiftFi.io and add it to the main navigation.
+
+This page should feel like Berkshire Hathaway, Blackstone, Constellation Software, or Alphabet—not a startup asking for money.
+
+The design should match the current LiftFi black, gold, and white branding.
+
+⸻
+
+HERO
+
+Build. Acquire. Scale.
+
+Investing in Businesses That Generate Long-Term Value.
+
+Lift Financial Holdings LLC is a private holding company focused on acquiring, building, and operating technology-enabled businesses across logistics, software, hospitality, media, and digital infrastructure.
+
+Button 1:
+Portfolio Companies
+
+Button 2:
+Contact Management
+
+Background should include a subtle financial architecture illustration using gold line work.
+
+⸻
+
+WHO WE ARE
+
+Lift Financial Holdings was created to centralize ownership, technology, and operational infrastructure across multiple businesses.
+
+Rather than operating a single company, LiftFi builds an ecosystem where every company benefits from shared technology, centralized operations, and disciplined capital allocation.
+
+⸻
+
+CURRENT PORTFOLIO
+
+Display large premium cards.
+
+Each card includes:
+
+Company logo
+
+Business description
+
+Industry
+
+Status
+
+Website button
+
+Aivara Solutions LLC
+
+Technology & Automation
+
+Business software
+
+AI systems
+
+Automation
+
+Portals
+
+Website:
+https://www.aivarasolutions.com
+
+Button:
+Visit Website
+
+⸻
+
+FreightSync TMS LLC
+
+Transportation Technology
+
+Fleet Management
+
+Dispatch Platform
+
+Carrier Operations
+
+Website
+
+https://www.freightsynctms.com
+
+⸻
+
+International Property Management
+
+Hospitality
+
+Vacation Rental Management
+
+Property Operations
+
+Website
+
+https://www.ipm.services
+
+⸻
+
+RichAF Global
+
+Travel
+
+Digital Guides
+
+Creator Economy
+
+Lifestyle Media
+
+Website
+
+https://www.richaf.global
+
+⸻
+
+New Opportunity Entertainment LLC
+
+Media
+
+Entertainment
+
+Music
+
+Digital Content
+
+Status
+
+Operating Company
+
+⸻
+
+BUSINESS MODEL
+
+Create a premium infographic showing
+
+Lift Financial Holdings
+
+↓
+
+Capital Allocation
+
+↓
+
+Technology
+
+↓
+
+Operations
+
+↓
+
+Marketing
+
+↓
+
+Shared Services
+
+↓
+
+Portfolio Companies
+
+↓
+
+Cash Flow
+
+↓
+
+Reinvestment
+
+⸻
+
+STRATEGIC ADVANTAGES
+
+Use premium icons.
+
+Technology First
+
+Every company shares software infrastructure.
+
+Recurring Revenue
+
+Focus on long-term recurring contracts and digital income.
+
+Shared Operations
+
+Accounting, marketing, automation, AI and administration are centralized.
+
+Scalable
+
+Every acquisition strengthens the ecosystem.
+
+Disciplined Growth
+
+Capital is allocated where long-term returns are strongest.
+
+⸻
+
+GROWTH ROADMAP
+
+Timeline
+
+Completed
+
+Formation of Lift Financial Holdings
+
+Operating portfolio established
+
+Technology infrastructure
+
+Current
+
+Expansion of portfolio
+
+Operational optimization
+
+Strategic partnerships
+
+Future
+
+Acquisitions
+
+Software products
+
+National expansion
+
+International expansion
+
+⸻
+
+INVESTMENT PHILOSOPHY
+
+Instead of chasing rapid exits, Lift Financial Holdings focuses on building businesses designed to compound value over decades.
+
+We believe disciplined ownership, technology, and operational excellence create sustainable long-term returns.
+
+⸻
+
+INVESTOR INFORMATION
+
+Create a premium information section.
+
+Private Company
+
+Lift Financial Holdings LLC is privately held.
+
+Seeking Strategic Capital Partners
+
+We welcome conversations with experienced strategic investors who share our long-term vision.
+
+Capital is intended to accelerate:
+
+Technology development
+
+Strategic acquisitions
+
+Operational growth
+
+Marketing
+
+Working capital
+
+National expansion
+
+International expansion
+
+Do not include public fundraising language, securities offerings, ownership percentages, valuation figures, or promises of returns on the public website.
+
+Instead include:
+
+Investment opportunities are evaluated individually with qualified investors. Additional financial information may be provided during confidential discussions and due diligence.
+
+⸻
+
+INVESTOR DATA ROOM
+
+Create a secure section explaining that qualified investors may receive access to:
+
+Executive Summary
+
+Corporate Structure
+
+Portfolio Overview
+
+Financial Statements
+
+Growth Strategy
+
+Capital Allocation Plan
+
+Technology Overview
+
+Market Analysis
+
+Leadership
+
+Investment Presentation
+
+Due Diligence Documents
+
+Place a button:
+
+Request Investor Access
+
+This should go to the Contact page.
+
+⸻
+
+FOOTER DISCLAIMER
+
+Add:
+
+Lift Financial Holdings LLC is a privately held holding company.
+
+Nothing contained on this website constitutes an offer to sell or the solicitation of an offer to purchase securities.
+
+Investment discussions are conducted privately with qualified parties and are subject to applicable laws and confidential due diligence.
