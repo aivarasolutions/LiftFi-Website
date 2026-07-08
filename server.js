@@ -6,6 +6,7 @@
 const path = require("path");
 const crypto = require("crypto");
 const express = require("express");
+const { Pool } = require("pg");
 const { ReplitConnectors } = require("@replit/connectors-sdk");
 
 const app = express();
@@ -382,6 +383,188 @@ app.get("/api/dataroom/content", (req, res) => {
     });
 });
 
+// ----- Financial Model & Capital Allocation (public read, admin write) -----
+const FINANCIAL_MODEL_DEFAULTS = {
+    kpis: [
+        { label: "Portfolio Companies", value: "5" },
+        { label: "Industries Served", value: "7" },
+        { label: "Technology Platforms", value: "3" },
+        { label: "Operating Markets", value: "4" },
+        { label: "Recurring Revenue Streams", value: "6" },
+    ],
+    allocation: [
+        { name: "Technology Development", pct: 25 },
+        { name: "Strategic Acquisitions", pct: 25 },
+        { name: "Sales & Marketing", pct: 20 },
+        { name: "Working Capital", pct: 15 },
+        { name: "Hiring & Operations", pct: 10 },
+        { name: "Research & Innovation", pct: 5 },
+    ],
+};
+
+const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL }) : null;
+
+async function initFinancialModelTable() {
+    if (!pool) return;
+    await pool.query(`
+        CREATE TABLE IF NOT EXISTS financial_model (
+            id INTEGER PRIMARY KEY,
+            data JSONB NOT NULL,
+            updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+        )
+    `);
+    await pool.query(
+        `INSERT INTO financial_model (id, data) VALUES (1, $1) ON CONFLICT (id) DO NOTHING`,
+        [JSON.stringify(FINANCIAL_MODEL_DEFAULTS)]
+    );
+}
+
+async function getFinancialModel() {
+    if (!pool) return FINANCIAL_MODEL_DEFAULTS;
+    try {
+        const { rows } = await pool.query(`SELECT data FROM financial_model WHERE id = 1`);
+        return rows[0]?.data || FINANCIAL_MODEL_DEFAULTS;
+    } catch (err) {
+        console.error("Financial model read failed, serving defaults:", err.message);
+        return FINANCIAL_MODEL_DEFAULTS;
+    }
+}
+
+app.get("/api/financial-model", async (req, res) => {
+    const data = await getFinancialModel();
+    return res.json({ ok: true, ...data });
+});
+
+// ----- Admin (access-code gated, separate code from the investor data room) -----
+const ADMIN_ACCESS_CODE = process.env.ADMIN_ACCESS_CODE || "";
+const ADMIN_TOKEN_TTL_MS = 12 * 60 * 60 * 1000;
+const adminTokens = new Map(); // token -> expiry timestamp
+const adminBuckets = new Map();
+
+function isAdminRateLimited(ip) {
+    const now = Date.now();
+    const bucket = (adminBuckets.get(ip) || []).filter((t) => now - t < DR_LIMIT_WINDOW_MS);
+    if (bucket.length >= DR_LIMIT_MAX) {
+        adminBuckets.set(ip, bucket);
+        return true;
+    }
+    bucket.push(now);
+    adminBuckets.set(ip, bucket);
+    return false;
+}
+
+setInterval(() => {
+    const now = Date.now();
+    for (const [ip, times] of adminBuckets) {
+        const fresh = times.filter((t) => now - t < DR_LIMIT_WINDOW_MS);
+        if (fresh.length === 0) adminBuckets.delete(ip);
+        else adminBuckets.set(ip, fresh);
+    }
+    for (const [token, expiry] of adminTokens) {
+        if (expiry < now) adminTokens.delete(token);
+    }
+}, DR_LIMIT_WINDOW_MS).unref();
+
+function getValidAdminToken(req) {
+    const auth = req.headers.authorization || "";
+    const token = auth.startsWith("Bearer ") ? auth.slice(7).trim() : "";
+    if (!token) return null;
+    const expiry = adminTokens.get(token);
+    if (!expiry || expiry < Date.now()) {
+        if (expiry) adminTokens.delete(token);
+        return null;
+    }
+    return token;
+}
+
+app.post("/api/admin/login", (req, res) => {
+    if (!ADMIN_ACCESS_CODE) {
+        return res.status(503).json({ ok: false, error: "Admin access is not yet configured." });
+    }
+    const ip = req.ip || req.socket.remoteAddress || "unknown";
+    if (isAdminRateLimited(ip)) {
+        return res.status(429).json({ ok: false, error: "Too many attempts. Please try again later." });
+    }
+    const code = stripNewlines(req.body?.code).slice(0, 200);
+    if (!code || !timingSafeEqualStr(code, ADMIN_ACCESS_CODE)) {
+        return res.status(401).json({ ok: false, error: "Invalid access code." });
+    }
+    const token = crypto.randomBytes(32).toString("hex");
+    adminTokens.set(token, Date.now() + ADMIN_TOKEN_TTL_MS);
+    return res.json({ ok: true, token });
+});
+
+function validateFinancialModel(body) {
+    const errors = [];
+    const kpis = Array.isArray(body?.kpis) ? body.kpis : null;
+    const allocation = Array.isArray(body?.allocation) ? body.allocation : null;
+
+    if (!kpis || kpis.length < 1 || kpis.length > 12) {
+        errors.push("Provide between 1 and 12 KPI cards.");
+    } else {
+        for (const k of kpis) {
+            const label = typeof k?.label === "string" ? k.label.trim() : "";
+            const value = typeof k?.value === "string" ? k.value.trim() : "";
+            if (!label || label.length > 80) errors.push("Each KPI needs a label (max 80 characters).");
+            if (!value || value.length > 40) errors.push("Each KPI needs a value (max 40 characters).");
+        }
+    }
+
+    if (!allocation || allocation.length < 2 || allocation.length > 10) {
+        errors.push("Provide between 2 and 10 allocation categories.");
+    } else {
+        let sum = 0;
+        for (const a of allocation) {
+            const name = typeof a?.name === "string" ? a.name.trim() : "";
+            const pct = Number(a?.pct);
+            if (!name || name.length > 80) errors.push("Each allocation category needs a name (max 80 characters).");
+            if (!Number.isFinite(pct) || pct < 0 || pct > 100) errors.push("Each allocation percentage must be between 0 and 100.");
+            sum += pct;
+        }
+        if (Math.round(sum * 100) / 100 !== 100) errors.push(`Allocation percentages must total exactly 100% (currently ${sum}%).`);
+    }
+
+    if (errors.length) return { errors };
+    return {
+        data: {
+            kpis: kpis.map((k) => ({ label: k.label.trim().slice(0, 80), value: k.value.trim().slice(0, 40) })),
+            allocation: allocation.map((a) => ({ name: a.name.trim().slice(0, 80), pct: Math.round(Number(a.pct) * 100) / 100 })),
+        },
+    };
+}
+
+app.get("/api/admin/financial-model", async (req, res) => {
+    if (!getValidAdminToken(req)) {
+        return res.status(401).json({ ok: false, error: "Session expired. Please sign in again." });
+    }
+    const data = await getFinancialModel();
+    return res.json({ ok: true, ...data });
+});
+
+app.put("/api/admin/financial-model", async (req, res) => {
+    if (!getValidAdminToken(req)) {
+        return res.status(401).json({ ok: false, error: "Session expired. Please sign in again." });
+    }
+    if (!pool) {
+        return res.status(503).json({ ok: false, error: "Database is not available." });
+    }
+    const { errors, data } = validateFinancialModel(req.body);
+    if (errors) {
+        return res.status(400).json({ ok: false, error: errors.join(" ") });
+    }
+    try {
+        await pool.query(
+            `INSERT INTO financial_model (id, data, updated_at) VALUES (1, $1, now())
+             ON CONFLICT (id) DO UPDATE SET data = EXCLUDED.data, updated_at = now()`,
+            [JSON.stringify(data)]
+        );
+        return res.json({ ok: true, ...data });
+    } catch (err) {
+        console.error("Financial model save failed:", err.message);
+        return res.status(500).json({ ok: false, error: "Could not save changes. Please try again." });
+    }
+});
+
 // ----- Contact endpoint -----
 app.post("/api/contact", async (req, res) => {
     try {
@@ -459,6 +642,10 @@ app.post("/api/contact", async (req, res) => {
     }
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Lift Fi server running on port ${PORT}`);
-});
+initFinancialModelTable()
+    .catch((err) => console.error("Financial model table init failed:", err.message))
+    .finally(() => {
+        app.listen(PORT, "0.0.0.0", () => {
+            console.log(`Lift Fi server running on port ${PORT}`);
+        });
+    });

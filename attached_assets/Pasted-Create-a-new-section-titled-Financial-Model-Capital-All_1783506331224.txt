@@ -1,0 +1,201 @@
+Create a new section titled Financial Model & Capital Allocation for the Lift Financial Holdings Investor Presentation and Investor Relations page.
+
+This section should present illustrative growth scenarios to help investors understand how additional capital could accelerate the business. Clearly label all figures as examples for discussion purposes only.
+
+Use LiftFi’s premium black, gold, and white branding.
+
+⸻
+
+SECTION 1 — Current Business Platform
+
+Display premium KPI cards (editable by the admin later):
+
+* Portfolio Companies
+* Industries Served
+* Technology Platforms
+* Operating Markets
+* Recurring Revenue Streams
+
+These should be editable from an admin panel.
+
+⸻
+
+SECTION 2 — Capital Allocation Strategy
+
+Illustrate how future capital may be deployed.
+
+Example allocation (editable):
+
+Technology Development — 25%
+
+Strategic Acquisitions — 25%
+
+Sales & Marketing — 20%
+
+Working Capital — 15%
+
+Hiring & Operations — 10%
+
+Research & Innovation — 5%
+
+Display as a professional donut chart and horizontal progress bars.
+
+⸻
+
+SECTION 3 — Illustrative Growth Scenarios
+
+Create three scenarios. Add a note stating:
+
+“The following scenarios are hypothetical examples for planning purposes only and are not projections or guarantees of future performance.”
+
+Scenario A — Organic Growth
+
+Illustrative investment:
+$250,000
+
+Potential focus:
+
+* Technology improvements
+* Marketing
+* Team expansion
+* Operational efficiency
+
+Illustrative outcomes:
+
+* Additional business capacity
+* Increased automation
+* Expanded customer acquisition
+
+⸻
+
+Scenario B — Strategic Expansion
+
+Illustrative investment:
+$500,000
+
+Potential focus:
+
+* Geographic expansion
+* New software products
+* Strategic acquisitions
+* Leadership hiring
+
+Illustrative outcomes:
+
+* New markets
+* Diversified revenue
+* Increased operational scale
+
+⸻
+
+Scenario C — Accelerated Growth
+
+Illustrative investment:
+$1,000,000+
+
+Potential focus:
+
+* Multiple acquisitions
+* Enterprise software
+* National expansion
+* International opportunities
+* AI development
+
+Illustrative outcomes:
+
+* Larger portfolio
+* Greater operating leverage
+* Broader market presence
+
+⸻
+
+SECTION 4 — Value Creation Strategy
+
+Create a premium flow diagram:
+
+Capital
+
+↓
+
+Technology
+
+↓
+
+Automation
+
+↓
+
+Operational Efficiency
+
+↓
+
+Revenue Growth
+
+↓
+
+Cash Flow
+
+↓
+
+Reinvestment
+
+↓
+
+Long-Term Enterprise Value
+
+⸻
+
+SECTION 5 — Investment Philosophy
+
+“Our objective is not rapid exits. Lift Financial Holdings is focused on building durable businesses that generate long-term value through disciplined ownership, technology, and operational excellence.”
+
+⸻
+
+SECTION 6 — Risk Management
+
+Highlight:
+
+* Diversified operating companies
+* Multiple industries
+* Shared technology platform
+* Centralized operations
+* Long-term ownership approach
+* Disciplined capital allocation
+
+⸻
+
+SECTION 7 — Why Additional Capital Matters
+
+Create six premium cards:
+
+Accelerate software development
+
+Expand into new markets
+
+Acquire complementary businesses
+
+Increase automation
+
+Strengthen operations
+
+Scale the LiftFi ecosystem
+
+⸻
+
+SECTION 8 — Interactive Capital Planning Tool
+
+Add an investor calculator (clearly labeled as illustrative) where users can adjust an investment amount and see how it could be allocated based on the percentages above. Display the breakdown by category without estimating returns or company valuation.
+
+⸻
+
+PDF Integration
+
+Include this section in the downloadable Investor Presentation PDF using premium charts and diagrams that match the website.
+
+⸻
+
+Disclaimer
+
+Include this note at the bottom of the page and in the PDF:
+
+The information contained in this section is for illustrative discussion purposes only. It does not constitute financial projections, investment advice, an offer to sell securities, or a guarantee of future performance. Actual results will depend on numerous factors and may differ materially from any illustrative examples.

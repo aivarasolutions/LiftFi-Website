@@ -6,3 +6,5 @@ The screenshot tool only captures the top viewport. To QA lower sections, screen
 
 **Why:** repeatedly needed when visually verifying new sections on this multi-section landing site.
 **How to apply:** any time a section below the fold needs visual verification.
+
+Exception: anchor screenshots of investor-presentation.html slides capture solid black (smooth-scroll timing artifact on the full-viewport slide layout). QA presentation slides via the regenerated PDF pages (pdftoppm) instead.

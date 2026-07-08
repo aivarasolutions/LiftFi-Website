@@ -1,2 +1,5 @@
-- [Print-ready PDF from HTML](pdf-from-html.md) — committed PDFs go stale; regenerate via headless chromium whenever the source page changes.
-- [Rate limiting behind Replit proxy](proxy-rate-limiting.md) — use trust proxy + req.ip, never raw X-Forwarded-For, or per-IP limits are spoofable.
+- [Resend connector requires Node SDK](resend-connector-node-only.md) — connectors only work via npm SDK; keep server-side work in Node Express, sensitive files behind its denylist.
+- [Rate limiting behind Replit proxy](proxy-rate-limiting.md) — never read x-forwarded-for manually; use trust proxy + req.ip.
+- [Print-ready PDF from HTML pages](pdf-from-html.md) — committed PDFs go stale; regen after page edits; print media queries can collapse slide grids.
+- [Section QA via anchor screenshots](section-qa-screenshots.md) — use ?qa=N#section-id; presentation slides must be QA'd via PDF pages, not anchors.
+- [Access-code-gated page pattern](admin-gated-pages.md) — gated UIs must boot through an auth-required read endpoint; token presence in sessionStorage is not auth.

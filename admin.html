@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Lift Financial Holdings LLC</title>
+    <meta name="description" content="Private administration area for Lift Financial Holdings LLC.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicons / App Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0A">
+    <link rel="stylesheet" href="presentation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="presentation-body">
+
+    <header class="pres-topbar">
+        <a class="pres-topbar-logo" href="index.html" aria-label="Lift Fi — Lift Financial Holdings home">
+            <img src="/brand/liftfi/liftfi_horizontal_web.png" alt="Lift Fi — Lift Financial Holdings LLC">
+        </a>
+        <div class="pres-topbar-actions">
+            <a class="pres-link" href="investor-relations.html"><i class="fas fa-arrow-left"></i> <span>Investor Relations</span></a>
+        </div>
+    </header>
+
+    <main class="dr-main">
+
+        <!-- Locked state -->
+        <div class="dr-gate" id="admGate">
+            <div class="dr-gate-icon"><i class="fas fa-user-shield"></i></div>
+            <h1>Site Administration</h1>
+            <p>This area is reserved for Lift Financial Holdings administrators. Please enter the admin access code.</p>
+            <form id="admForm" autocomplete="off">
+                <input type="password" id="admCode" name="code" placeholder="Admin Access Code" aria-label="Admin access code" required maxlength="200">
+                <p class="dr-error" id="admError" role="alert" aria-live="polite"></p>
+                <button type="submit" id="admSubmit">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Unlocked state -->
+        <div class="dr-content" id="admContent">
+            <div class="dr-content-header">
+                <p class="slide-eyebrow">Administration</p>
+                <h1>Financial Model &amp; Capital Allocation</h1>
+                <p>Edit the platform KPIs and the illustrative capital allocation shown on the Investor Relations page and in the Investor Presentation.</p>
+            </div>
+
+            <section class="adm-section">
+                <h2><i class="fas fa-chart-simple"></i> Platform KPIs</h2>
+                <p class="adm-hint">1&ndash;12 cards. Label up to 80 characters, value up to 40 characters (e.g. &ldquo;5&rdquo;, &ldquo;7+&rdquo;).</p>
+                <div class="adm-rows" id="admKpis"></div>
+                <button type="button" class="adm-add" id="admAddKpi"><i class="fas fa-plus"></i> Add KPI</button>
+            </section>
+
+            <section class="adm-section">
+                <h2><i class="fas fa-chart-pie"></i> Capital Allocation</h2>
+                <p class="adm-hint">2&ndash;10 categories. Percentages must total exactly 100%.</p>
+                <div class="adm-rows" id="admAlloc"></div>
+                <div class="adm-alloc-total" id="admAllocTotal"></div>
+                <button type="button" class="adm-add" id="admAddAlloc"><i class="fas fa-plus"></i> Add Category</button>
+            </section>
+
+            <p class="dr-error" id="admSaveError" role="alert" aria-live="polite"></p>
+            <p class="adm-success" id="admSaveOk" role="status" aria-live="polite"></p>
+
+            <div class="adm-actions">
+                <button type="button" class="adm-save" id="admSave"><i class="fas fa-floppy-disk"></i> Save Changes</button>
+                <button type="button" class="adm-signout" id="admSignOut"><i class="fas fa-right-from-bracket"></i> Sign Out</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        (function () {
+            "use strict";
+            var TOKEN_KEY = "liftfi_admin_token";
+            var gate = document.getElementById("admGate");
+            var content = document.getElementById("admContent");
+            var form = document.getElementById("admForm");
+            var codeInput = document.getElementById("admCode");
+            var errorEl = document.getElementById("admError");
+            var submitBtn = document.getElementById("admSubmit");
+            var kpiRows = document.getElementById("admKpis");
+            var allocRows = document.getElementById("admAlloc");
+            var allocTotal = document.getElementById("admAllocTotal");
+            var saveBtn = document.getElementById("admSave");
+            var saveError = document.getElementById("admSaveError");
+            var saveOk = document.getElementById("admSaveOk");
+
+            function showGate() {
+                sessionStorage.removeItem(TOKEN_KEY);
+                content.classList.remove("open");
+                gate.style.display = "";
+                codeInput.value = "";
+            }
+
+            function row(cls) {
+                var div = document.createElement("div");
+                div.className = "adm-row " + cls;
+                return div;
+            }
+
+            function textInput(cls, placeholder, value, maxlength) {
+                var input = document.createElement("input");
+                input.type = "text";
+                input.className = cls;
+                input.placeholder = placeholder;
+                input.value = value == null ? "" : value;
+                input.maxLength = maxlength;
+                return input;
+            }
+
+            function removeBtn(onClick) {
+                var btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "adm-remove";
+                btn.setAttribute("aria-label", "Remove row");
+                btn.innerHTML = '<i class="fas fa-xmark"></i>';
+                btn.addEventListener("click", onClick);
+                return btn;
+            }
+
+            function addKpiRow(kpi) {
+                var r = row("adm-row-kpi");
+                r.appendChild(textInput("adm-input adm-kpi-value", "Value (e.g. 5)", kpi && kpi.value, 40));
+                r.appendChild(textInput("adm-input adm-kpi-label", "Label (e.g. Portfolio Companies)", kpi && kpi.label, 80));
+                r.appendChild(removeBtn(function () { r.remove(); }));
+                kpiRows.appendChild(r);
+            }
+
+            function addAllocRow(a) {
+                var r = row("adm-row-alloc");
+                r.appendChild(textInput("adm-input adm-alloc-name", "Category (e.g. Technology Development)", a && a.name, 80));
+                var pct = document.createElement("input");
+                pct.type = "number";
+                pct.className = "adm-input adm-alloc-pct";
+                pct.placeholder = "%";
+                pct.min = "0";
+                pct.max = "100";
+                pct.step = "0.5";
+                pct.value = a && a.pct != null ? a.pct : "";
+                pct.addEventListener("input", updateTotal);
+                r.appendChild(pct);
+                r.appendChild(removeBtn(function () { r.remove(); updateTotal(); }));
+                allocRows.appendChild(r);
+            }
+
+            function updateTotal() {
+                var sum = 0;
+                allocRows.querySelectorAll(".adm-alloc-pct").forEach(function (input) {
+                    sum += Number(input.value) || 0;
+                });
+                sum = Math.round(sum * 100) / 100;
+                allocTotal.textContent = "Total: " + sum + "%";
+                allocTotal.classList.toggle("ok", sum === 100);
+            }
+
+            function collect() {
+                var kpis = [];
+                kpiRows.querySelectorAll(".adm-row-kpi").forEach(function (r) {
+                    kpis.push({
+                        value: r.querySelector(".adm-kpi-value").value.trim(),
+                        label: r.querySelector(".adm-kpi-label").value.trim()
+                    });
+                });
+                var allocation = [];
+                allocRows.querySelectorAll(".adm-row-alloc").forEach(function (r) {
+                    allocation.push({
+                        name: r.querySelector(".adm-alloc-name").value.trim(),
+                        pct: Number(r.querySelector(".adm-alloc-pct").value)
+                    });
+                });
+                return { kpis: kpis, allocation: allocation };
+            }
+
+            function renderEditor(data) {
+                kpiRows.innerHTML = "";
+                allocRows.innerHTML = "";
+                (data.kpis || []).forEach(addKpiRow);
+                (data.allocation || []).forEach(addAllocRow);
+                updateTotal();
+                gate.style.display = "none";
+                content.classList.add("open");
+            }
+
+            function loadModel() {
+                var token = sessionStorage.getItem(TOKEN_KEY);
+                if (!token) return Promise.reject(new Error("Not signed in."));
+                return fetch("/api/admin/financial-model", {
+                    headers: { Authorization: "Bearer " + token }
+                }).then(function (res) {
+                    return res.json().then(function (data) {
+                        if (!res.ok || !data.ok) throw new Error(data.error || "Could not load current values.");
+                        renderEditor(data);
+                    });
+                });
+            }
+
+            var existing = sessionStorage.getItem(TOKEN_KEY);
+            if (existing) {
+                loadModel().catch(showGate);
+            }
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                errorEl.textContent = "";
+                submitBtn.disabled = true;
+                fetch("/api/admin/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code: codeInput.value })
+                }).then(function (res) {
+                    return res.json().then(function (data) {
+                        if (!res.ok || !data.ok) throw new Error(data.error || "Invalid access code.");
+                        sessionStorage.setItem(TOKEN_KEY, data.token);
+                        return loadModel();
+                    });
+                }).catch(function (err) {
+                    errorEl.textContent = err.message || "Something went wrong. Please try again.";
+                }).finally(function () {
+                    submitBtn.disabled = false;
+                });
+            });
+
+            document.getElementById("admAddKpi").addEventListener("click", function () { addKpiRow(); });
+            document.getElementById("admAddAlloc").addEventListener("click", function () { addAllocRow(); updateTotal(); });
+
+            saveBtn.addEventListener("click", function () {
+                saveError.textContent = "";
+                saveOk.textContent = "";
+                var token = sessionStorage.getItem(TOKEN_KEY);
+                if (!token) { showGate(); return; }
+                saveBtn.disabled = true;
+                fetch("/api/admin/financial-model", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer " + token
+                    },
+                    body: JSON.stringify(collect())
+                }).then(function (res) {
+                    return res.json().then(function (data) {
+                        if (res.status === 401) { showGate(); throw new Error(data.error || "Session expired."); }
+                        if (!res.ok || !data.ok) throw new Error(data.error || "Could not save changes.");
+                        saveOk.textContent = "Saved. The website and presentation now show the updated values.";
+                    });
+                }).catch(function (err) {
+                    saveError.textContent = err.message || "Something went wrong. Please try again.";
+                }).finally(function () {
+                    saveBtn.disabled = false;
+                });
+            });
+
+            document.getElementById("admSignOut").addEventListener("click", showGate);
+        })();
+    </script>
+
+</body>
+
+</html>
