@@ -1252,6 +1252,86 @@ section {
     white-space: nowrap;
 }
 
+/* Portfolio card logos, URLs & CTA buttons */
+.card-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 46px;
+    margin-bottom: 16px;
+    transition: var(--transition);
+}
+
+.card-logo:hover {
+    opacity: 0.85;
+}
+
+.card-logo img {
+    max-height: 46px;
+    max-width: 170px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.card-logo.has-bg {
+    background: var(--white);
+    padding: 8px 14px;
+    border-radius: 6px;
+}
+
+.card-url {
+    display: inline-block;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 14px;
+    word-break: break-all;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.card-url:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold-dim);
+}
+
+.card-url i {
+    font-size: 0.68rem;
+    margin-left: 4px;
+}
+
+.card-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 11px 20px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: var(--transition);
+    align-self: flex-start;
+}
+
+.card-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--black);
+}
+
+.card-cta i {
+    font-size: 0.7rem;
+}
+
 /* Deal criteria summary & data room CTA */
 .criteria-summary {
     text-align: center;
